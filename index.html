@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lounis Cartron - Portfolio</title>
   <meta name="description" content="Portfolio de Lounis Cartron — BUT Réseaux & Télécommunications.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="main.css">
   <script>document.documentElement.classList.add('js')</script>
   <script src="main.js" defer></script>
@@ -20,13 +17,16 @@
   <nav class="site-nav">
     <div class="nav-content">
       <p class="logo">Lounis <span>CARTRON</span></p>
+
       <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navMenu">
         <span class="nav-toggle-bars" aria-hidden="true"></span>
       </button>
+
       <ul id="navMenu" class="nav-menu">
         <li><a href="#about">À Propos</a></li>
         <li><a href="#formation">Parcours</a></li>
         <li><a href="#competences">Compétences</a></li>
+
         <li class="dropdown">
           <div class="dropdown-head">
             <a class="dropdown-link" href="#projects">Projets</a>
@@ -35,11 +35,13 @@
             </button>
           </div>
           <ul class="dropdown-menu">
-            <li><a href="#project-cisco">Home Lab</a></li>
-            <li><a href="#project-cyberskills">Cyberskills</a></li>
-            <li><a href="#project-voip">VoIP</a></li>
+            <li><a href="#project-1">Home Lab</a></li>
+            <li><a href="#project-2">Site PHP</a></li>
+            <li><a href="#project-3">ToIP</a></li>
           </ul>
         </li>
+
+        <li><a href="#passions">Passions</a></li>
         <li><a href="#cv">CV</a></li>
         <li><a href="#contact" class="btn-contact">Contact</a></li>
       </ul>
@@ -49,27 +51,18 @@
   <header class="hero">
     <div class="hero-content">
       <div class="hero-text">
-        <p class="kicker">BUT Réseaux &amp; Télécommunications</p>
+        <p class="kicker">BUT Réseaux & Télécommunications</p>
         <h1>Lounis <span>CARTRON</span></h1>
-        <h2>Réseaux · Systèmes · Télécoms · Cybersécurité</h2>
-        <div class="hero-tags">
-          <span class="hero-tag hero-tag--live">
-            <span class="hero-tag-dot"></span>
-            Alternance — Sept. 2026
-          </span>
-          <span class="hero-tag">Clermont-Ferrand</span>
-          <span class="hero-tag">18 ans</span>
-        </div>
+        <h2>Réseaux · Systèmes · Télécoms · Bases cybersécurité</h2>
+
         <div class="hero-actions">
           <a class="btn-primary" href="#projects">Voir mes projets</a>
           <a class="btn-ghost" href="#cv">Voir mon CV</a>
         </div>
       </div>
+
       <div class="hero-media">
-        <div class="profile-pic-wrapper">
-          <img src="img/pdp.jpeg" alt="Photo de Lounis Cartron" class="profile-pic">
-          <div class="profile-ring" aria-hidden="true"></div>
-        </div>
+        <img src="img/pdp.jpeg" alt="Photo de Lounis Cartron" class="profile-pic">
       </div>
     </div>
   </header>
@@ -82,11 +75,16 @@
         <div class="about-grid">
           <div class="about-text">
             <p><strong>J'ai 18 ans et je suis originaire de Clermont-Ferrand.</strong></p>
+
             <p>Actuellement étudiant en BUT Réseaux et Télécommunications, je porte un intérêt particulier aux infrastructures réseau, à la cybersécurité et aux services télécoms.</p>
+
             <p>J'apprends surtout en pratiquant : diagnostiquer une panne, en comprendre la cause et remettre un service en fonctionnement sont des missions qui me motivent réellement. J'ai choisi cette filière pour son approche concrète et professionnalisante.</p>
+
             <p>Curieux et rigoureux, j'aime analyser les problèmes en profondeur et communiquer clairement pour faire avancer l'équipe.</p>
+
             <p>Je recherche une alternance à partir de septembre 2026, avec un rythme d'un mois en entreprise et un mois en formation. Cette expérience me permettrait d'appliquer mes compétences, de contribuer à des projets réseau concrets et de gagner en responsabilités, notamment vers des missions d'ingénierie ou d'exploitation.</p>
-            <p>À l'issue de mon BUT, mon objectif est d'intégrer une école d'ingénieur.</p>
+
+            <p>À l'issue de mon BUT, mon objectif est d'intégrer une école d'ingénieur. </p>
           </div>
         </div>
       </div>
@@ -95,17 +93,20 @@
     <section id="formation" class="bg-light reveal">
       <div class="container">
         <h2 class="section-title">Mon Parcours</h2>
+
         <div class="timeline">
           <div class="timeline-item">
             <div class="date">Sept 2025 - Présent</div>
             <div class="content">
               <h3>BUT Réseaux et Télécommunications</h3>
               <p>IUT Clermont Auvergne - Site d'Aubière</p>
-              <p><small>J'ai choisi le BUT Réseaux &amp; Télécommunications parce que je suis passionné par le fonctionnement des systèmes informatiques et par la manière dont ils communiquent entre eux. Je souhaite développer des compétences techniques solides et recherchées dans un domaine en constante évolution, notamment en protocoles réseaux, en administration système et en sécurité informatique.</small></p>
+              <p>Pourquoi ce choix</p>
+              <p><small>J’ai choisi le BUT Réseaux & Télécommunications parce que je suis passionné par le fonctionnement des systèmes informatiques et par la manière dont ils communiquent entre eux. Je souhaite développer des compétences techniques solides et recherchées dans un domaine en constante évolution, notamment en protocoles réseaux, en administration système et en sécurité informatique.</small></p>
               <p><small>Apprentissage des protocoles, administration système et sécurité.</small></p>
               <img src="img/iut.webp" alt="IUT Aubière" class="formation-img">
             </div>
           </div>
+
           <div class="timeline-item">
             <div class="date">2022 - 2025</div>
             <div class="content">
@@ -119,179 +120,91 @@
       </div>
     </section>
 
-    <!-- COMPÉTENCES -->
+    <!-- Remplace la section #competences et #projects par ce bloc dans ton index.html -->
+
     <section id="competences" class="reveal">
       <div class="container">
-        <h2 class="section-title">Compétences &amp; Qualités</h2>
+        <h2 class="section-title">Compétences & Qualités</h2>
+
         <div class="skills-grid">
-
-          <article class="skill-card skill-card--network">
-            <div class="skill-card-header">
-              <div class="skill-icon-circle skill-icon--network">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M12 8v4M8.5 17.5L12 12M15.5 17.5L12 12"/></svg>
-              </div>
-              <h3>Réseaux &amp; Routage</h3>
-            </div>
-            <ul class="skill-list">
-              <li>Routeurs <strong>Cisco 1841</strong> via CLI (IOS)</li>
-              <li>VLANs, trunks &amp; segmentation réseau</li>
-              <li>Routage statique &amp; dynamique</li>
-              <li>NAT/PAT, DHCP, DNS, filtrage IP</li>
-              <li>Packet Tracer, Wireshark</li>
-            </ul>
-            <div class="skill-tags">
-              <span class="skill-tag">Cisco IOS</span>
-              <span class="skill-tag">VLAN</span>
-              <span class="skill-tag">Routage</span>
-              <span class="skill-tag">NAT/PAT</span>
-              <span class="skill-tag">Wireshark</span>
-            </div>
+          <article class="skill-card">
+            <h3>Administration Réseaux</h3>
+            <p class="skill-detail"><strong>Configuration :</strong> Matériel Cisco (Routeurs 1841), Wi‑Fi, VLANs, Routage statique/dynamique.</p>
+            <p class="skill-detail"><strong>Services :</strong> NAT/PAT, DHCP, DNS, filtrage IP.</p>
+            <p class="skill-detail"><strong>Logiciels :</strong> Cisco IOS (CLI), Packet Tracer, Wireshark.</p>
           </article>
 
-          <article class="skill-card skill-card--system">
-            <div class="skill-card-header">
-              <div class="skill-icon-circle skill-icon--system">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              </div>
-              <h3>Administration Système</h3>
-            </div>
-            <ul class="skill-list">
-              <li>Serveurs Linux (home lab, services locaux)</li>
-              <li>Conteneurs Docker via <strong>Portainer</strong></li>
-              <li><strong>Active Directory</strong> — utilisateurs &amp; GPO</li>
-              <li>Gestion des droits, permissions &amp; journaux</li>
-            </ul>
-            <div class="skill-tags">
-              <span class="skill-tag">Linux</span>
-              <span class="skill-tag">Portainer</span>
-              <span class="skill-tag">Active Directory</span>
-              <span class="skill-tag">Docker</span>
-            </div>
+          <article class="skill-card">
+            <h3>Système & Web</h3>
+            <p class="skill-detail"><strong>Administration :</strong> Mise en place de serveurs domestiques (Home Lab), gestion des droits Linux.</p>
+            <p class="skill-detail"><strong>Développement :</strong> PHP, MySQL (gestion de bases de données), HTML/CSS responsive.</p>
+            <p class="skill-detail"><strong>Scripting :</strong> Automatisation en Python et scripts CLI.</p>
           </article>
 
-          <article class="skill-card skill-card--web">
-            <div class="skill-card-header">
-              <div class="skill-icon-circle skill-icon--web">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              </div>
-              <h3>Développement &amp; Bases de données</h3>
-            </div>
-            <ul class="skill-list">
-              <li>Backend <strong>PHP</strong> — sessions, rôles, sécurité</li>
-              <li>Modélisation &amp; requêtes <strong>SQL / MySQL</strong></li>
-              <li>HTML / CSS responsive</li>
-              <li>Automatisation en <strong>Python</strong> &amp; scripts CLI</li>
-            </ul>
-            <div class="skill-tags">
-              <span class="skill-tag">PHP</span>
-              <span class="skill-tag">SQL</span>
-              <span class="skill-tag">MySQL</span>
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">HTML/CSS</span>
-            </div>
+          <article class="skill-card">
+            <h3>Télécommunications</h3>
+            <p class="skill-detail"><strong>Supports :</strong> Câblage structuré (cuivre/RJ45), jarretières, introduction à la fibre.</p>
+            <p class="skill-detail"><strong>Signal :</strong> Notions de fréquence, amplitude, bande passante, conversions.</p>
           </article>
 
-          <article class="skill-card skill-card--telecom">
-            <div class="skill-card-header">
-              <div class="skill-icon-circle skill-icon--telecom">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              </div>
-              <h3>Télécommunications</h3>
-            </div>
-            <ul class="skill-list">
-              <li>Câblage structuré — RJ45, jarretières, fibre</li>
-              <li>VoIP / IPBX — XiVO, protocole SIP</li>
-              <li>Notions signal : fréquence, bande passante</li>
-              <li>Virtualisation (VMware / ESXi)</li>
-            </ul>
-            <div class="skill-tags">
-              <span class="skill-tag">VoIP / SIP</span>
-              <span class="skill-tag">XiVO</span>
-              <span class="skill-tag">VMware</span>
-              <span class="skill-tag">Câblage</span>
-            </div>
+          <article class="skill-card">
+            <h3>Qualités</h3>
+            <p class="skill-detail"><strong>Autonomie :</strong> Apprentissage autodidacte via mon infrastructure personnelle.</p>
+            <p class="skill-detail"><strong>Rigueur :</strong> Méthodique dans les diagnostics et la documentation technique.</p>
+            <p class="skill-detail"><strong>Esprit d'équipe :</strong> Communication claire pour la résolution d'incidents.</p>
           </article>
 
-          <article class="skill-card skill-card--soft">
-            <div class="skill-card-header">
-              <div class="skill-icon-circle skill-icon--soft">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-              </div>
-              <h3>Qualités</h3>
-            </div>
-            <ul class="skill-list">
-              <li><strong>Autonomie</strong> — Apprentissage autodidacte via infrastructure personnelle</li>
-              <li><strong>Rigueur</strong> — Diagnostics méthodiques et documentation technique</li>
-              <li><strong>Esprit d'équipe</strong> — Communication claire en résolution d'incidents</li>
-              <li><strong>Curiosité</strong> — Veille technologique active</li>
+          <article class="skill-card">
+            <h3>Langues</h3>
+            <ul class="lang-list">
+              <li><span>Anglais</span><span class="level">Niveau B1+</span></li>
+              <li><span>Espagnol</span><span class="level">Niveau C1</span></li>
             </ul>
           </article>
-
-          <article class="skill-card skill-card--lang">
-            <div class="skill-card-header">
-              <div class="skill-icon-circle skill-icon--lang">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
-              </div>
-              <h3>Langues</h3>
-            </div>
-            <div class="lang-bars">
-              <div class="lang-item">
-                <div class="lang-meta">
-                  <span class="lang-name">Anglais</span>
-                  <span class="level">B1+</span>
-                </div>
-                <div class="lang-bar"><div class="lang-bar-fill" style="width:65%"></div></div>
-              </div>
-              <div class="lang-item">
-                <div class="lang-meta">
-                  <span class="lang-name">Espagnol</span>
-                  <span class="level">C1</span>
-                </div>
-                <div class="lang-bar"><div class="lang-bar-fill" style="width:90%"></div></div>
-              </div>
-            </div>
-          </article>
-
         </div>
       </div>
     </section>
 
-    <!-- PROJETS -->
-    <section id="projects" class="bg-light reveal">
+    <section id="projects" class="reveal">
       <div class="container">
         <div class="section-head">
-          <h2 class="section-title">Projets personnels &amp; académiques</h2>
+          <h2 class="section-title">Projets personnels & académiques</h2>
         </div>
+
         <div class="projects-grid">
 
+          <!-- PROJET HOME LAB (NOUVEAU) -->
           <article class="project-card" id="project-cisco">
             <details class="project-details">
               <summary>
                 <img src="img/homelab_img.png" alt="Infrastructure Cisco">
                 <div class="summary-title-wrapper">
-                  <span class="title">Home Lab &amp; Routage Cisco</span>
+                  <span class="title">Home Lab & Routage Cisco</span>
                   <span class="badge">Infrastructure</span>
                 </div>
+
                 <div class="tool-badges">
                   <span class="tool-badge" data-ico="IOS" title="Cisco CLI">Cisco IOS</span>
                   <span class="tool-badge" data-ico="SRV" title="Serveur">Serveur Linux</span>
                   <span class="tool-badge" data-ico="NET" title="Networking">NAT/PAT</span>
                 </div>
               </summary>
+
               <div class="project-content-inner">
                 <div class="detail-section">
                   <h4>Objectif</h4>
                   <p>Déployer une infrastructure réseau professionnelle à domicile pour l'auto-apprentissage.</p>
                 </div>
+
                 <div class="detail-section info">
                   <h4>Réalisations techniques</h4>
                   <ul>
                     <li>Configuration complète d'un routeur <strong>Cisco 1841</strong> via interface en ligne de commande (CLI).</li>
                     <li>Mise en place de l'accès Internet avec translation d'adresses (<strong>NAT/PAT</strong>) et sécurisation des accès distants.</li>
                     <li>Installation et administration d'un serveur Linux personnel pour l'hébergement de services locaux.</li>
-                    <li>Gestion de conteneurs avec <strong>Portainer</strong> pour les services hébergés.</li>
                   </ul>
                 </div>
+
                 <div class="detail-section results">
                   <h4>Résultats</h4>
                   <p>Environnement de test fonctionnel permettant de simuler des pannes réelles et de tester des configurations réseaux avant déploiement.</p>
@@ -300,6 +213,7 @@
             </details>
           </article>
 
+          <!-- PROJET CYBERSKILLS (NOUVEAU) -->
           <article class="project-card" id="project-cyberskills">
             <details class="project-details">
               <summary>
@@ -308,17 +222,20 @@
                   <span class="title">Plateforme "Cyberskills"</span>
                   <span class="badge">Dév Web Backend</span>
                 </div>
+
                 <div class="tool-badges">
                   <span class="tool-badge" data-ico="PHP" title="PHP">PHP</span>
                   <span class="tool-badge" data-ico="SQL" title="MySQL">MySQL</span>
                   <span class="tool-badge" data-ico="SEC" title="Sécurité">Gestion Rôles</span>
                 </div>
               </summary>
+
               <div class="project-content-inner">
                 <div class="detail-section">
                   <h4>Objectif</h4>
                   <p>Développer une plateforme web dynamique de gestion de compétences en cybersécurité.</p>
                 </div>
+
                 <div class="detail-section info">
                   <h4>Fonctionnalités</h4>
                   <ul>
@@ -327,6 +244,7 @@
                     <li>Modélisation et requêtage d'une base de données <strong>MySQL</strong> pour le suivi des parcours de formation.</li>
                   </ul>
                 </div>
+
                 <div class="detail-section results">
                   <h4>Résultats</h4>
                   <p>Interface intuitive permettant la validation des compétences par les formateurs et la consultation des progrès par les étudiants.</p>
@@ -336,66 +254,56 @@
           </article>
 
           <article class="project-card" id="project-voip">
-            <details class="project-details">
-              <summary>
-                <img src="img/xivo_img.jpg" alt="Projet VoIP XiVO">
-                <div class="summary-title-wrapper">
-                  <span class="title">Standard Téléphonique IP (VoIP)</span>
-                  <span class="badge">Télécoms</span>
-                </div>
-                <div class="tool-badges">
-                  <span class="tool-badge" data-ico="VOIP" title="XiVO IPBX">XiVO</span>
-                  <span class="tool-badge" data-ico="VM" title="Virtualisation">VMware/ESXi</span>
-                  <span class="tool-badge" data-ico="SIP" title="Protocole SIP">Protocole SIP</span>
-                </div>
-              </summary>
-              <div class="project-content-inner">
-                <div class="detail-section">
-                  <h4>Objectif</h4>
-                  <p>Mettre en place un IPBX (autocommutateur téléphonique IP) pour gérer des communications internes au réseau local.</p>
-                </div>
-                <div class="detail-section info">
-                  <h4>Réalisations techniques</h4>
-                  <ul>
-                    <li>Installation et déploiement d'un serveur <strong>XiVO</strong> sur une machine virtuelle (VM).</li>
-                    <li>Configuration des comptes utilisateurs et des lignes via le protocole <strong>SIP</strong>.</li>
-                    <li>Paramétrage du plan de numérotation interne pour la mise en relation des postes.</li>
-                  </ul>
-                </div>
-                <div class="detail-section results">
-                  <h4>Résultats</h4>
-                  <p>Communications voix établies avec succès entre deux appareils (PC et Smartphone) en utilisant des <strong>softphones</strong> connectés au Wi-Fi local.</p>
-                </div>
-              </div>
-            </details>
-          </article>
+  <details class="project-details">
+    <summary>
+      <img src="img/xivo_img.jpg" alt="Projet VoIP XiVO">
+      <div class="summary-title-wrapper">
+        <span class="title">Standard Téléphonique IP (VoIP)</span>
+        <span class="badge">Télécoms</span>
+      </div>
 
+      <div class="tool-badges">
+        <span class="tool-badge" data-ico="VOIP" title="XiVO IPBX">XiVO</span>
+        <span class="tool-badge" data-ico="VM" title="Virtualisation">VMware/ESXi</span>
+        <span class="tool-badge" data-ico="SIP" title="Protocole SIP">Protocole SIP</span>
+      </div>
+    </summary>
+
+    <div class="project-content-inner">
+      <div class="detail-section">
+        <h4>Objectif</h4>
+        <p>Mettre en place un IPBX (autocommutateur téléphonique IP) pour gérer des communications internes au réseau local.</p>
+      </div>
+
+      <div class="detail-section info">
+        <h4>Réalisations techniques</h4>
+        <ul>
+          <li>Installation et déploiement d'un serveur <strong>XiVO</strong> sur une machine virtuelle (VM).</li>
+          <li>Configuration des comptes utilisateurs et des lignes via le protocole <strong>SIP</strong>.</li>
+          <li>Paramétrage du plan de numérotation interne pour la mise en relation des postes.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section results">
+        <h4>Résultats</h4>
+        <p>Communications voix établies avec succès entre deux appareils (PC et Smartphone) en utilisant des <strong>softphones</strong> connectés au Wi-Fi local.</p>
+      </div>
+    </div>
+  </details>
+</article>
         </div>
       </div>
     </section>
-    <section id="passions" class="reveal">
-      <div class="container">
-        <h2 class="section-title">Mes Passions</h2>
-        <div class="passion-grid">           
-        <article class="passion-card">             
-          <div class="passion-image">               
-            <img src="img/salle muscu.webp" alt="Salle de sport">             
-          </div>             
-          <div class="passion-content">               
-            <h3>Musculation & Fitness</h3>               
-            <p>Passionné de musculation depuis 2 ans, je m'entraîne régulièrement 4 à 5 fois par semaine. La salle de sport m'apporte discipline, dépassement de soi et gestion du stress.</p>               
-            <p>Cette pratique développe ma rigueur, ma persévérance et ma capacité à me fixer des objectifs à long terme - des qualités que je transpose dans mes études et projets professionnels.</p>             
-          </div>           
-        </article>         
-        </div>       
-      </div>     
-    </section>
+    
+
     <section id="cv" class="reveal">
       <div class="container text-center">
         <h2 class="section-title">Mon CV</h2>
+
         <div class="cv-place-holder">
           <img src="img/cv.png" alt="CV Lounis Cartron">
         </div>
+
         <div class="cv-actions">
           <a href="cv.pdf" download="LOUNIS CARTRON CV.pdf" class="btn-primary">Télécharger mon CV</a>
         </div>
