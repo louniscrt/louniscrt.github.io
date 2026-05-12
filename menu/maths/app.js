@@ -131,17 +131,17 @@ function createChapterCard(chapter) {
         </div>
 
         <div class="chapter-actions">
-          <a href="./pages/cours.html?chapter=${encodeURIComponent(chapter.id)}">
+          <a href="cours.html?chapter=${encodeURIComponent(chapter.id)}">
             <i class="fa-solid fa-book-open"></i>
             Cours
           </a>
 
-          <a href="./pages/td.html?chapter=${encodeURIComponent(chapter.id)}">
+          <a href="td.html?chapter=${encodeURIComponent(chapter.id)}">
             <i class="fa-solid fa-terminal"></i>
             TD
           </a>
 
-          <a href="./pages/quiz.html?chapter=${encodeURIComponent(chapter.id)}">
+          <a href="quiz.html?chapter=${encodeURIComponent(chapter.id)}">
             <i class="fa-solid fa-circle-question"></i>
             Quiz
           </a>
