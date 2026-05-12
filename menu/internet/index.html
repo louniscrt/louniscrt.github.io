@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réseaux Informatiques — Cours Interactif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  /* ===== DESIGN TOKENS ===== */
+  :root {
+    --bg: #f7f4ef;
+    --bg-panel: #eeeae2;
+    --sidebar-bg: #1a1814;
+    --sidebar-text: #c9c2b4;
+    --sidebar-active: #f0e8d8;
+    --sidebar-accent: #d4a853;
+    --text: #1a1814;
+    --text-muted: #6b6456;
+    --heading: #0f0d0a;
+    --accent: #b8460b;
+    --accent-2: #2b5f8e;
+    --card-bg: #ffffff;
+    --card-border: #ddd8ce;
+    --code-bg: #1e1b16;
+    --code-text: #e8d5a3;
+    --analogy-bg: #fffbf0;
+    --analogy-border: #d4a853;
+    --analogy-icon: #c4891e;
+    --warning-bg: #fff5f0;
+    --warning-border: #b8460b;
+    --warning-icon: #b8460b;
+    --shadow: 0 2px 16px rgba(26,24,20,0.08);
+    --shadow-lg: 0 8px 40px rgba(26,24,20,0.14);
+    --radius: 8px;
+    --sidebar-w: 280px;
+    --transition: 0.25s ease;
+  }
+
+  [data-theme="dark"] {
+    --bg: #131110;
+    --bg-panel: #1c1916;
+    --sidebar-bg: #0d0c0a;
+    --sidebar-text: #a09588;
+    --sidebar-active: #f0e8d8;
+    --sidebar-accent: #d4a853;
+    --text: #d6cfc4;
+    --text-muted: #7a726a;
+    --heading: #f0e8d8;
+    --accent: #e05a1a;
+    --accent-2: #5b9fd0;
+    --card-bg: #1c1916;
+    --card-border: #2e2a24;
+    --code-bg: #0d0c0a;
+    --code-text: #e8d5a3;
+    --analogy-bg: #1e1a10;
+    --analogy-border: #8a6820;
+    --analogy-icon: #d4a853;
+    --warning-bg: #1e1108;
+    --warning-border: #8a3208;
+    --warning-icon: #e05a1a;
+    --shadow: 0 2px 16px rgba(0,0,0,0.4);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 17px;
+    transition: background var(--transition), color var(--transition);
+    overflow-x: hidden;
+  }
+
+  /* ===== LAYOUT ===== */
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    transition: transform var(--transition);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #3a3530 transparent;
+  }
+
+  .sidebar-header {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid #2a2520;
+  }
+
+  .sidebar-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--sidebar-active);
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+
+  .sidebar-logo span {
+    display: block;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    color: var(--sidebar-accent);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .sidebar-nav {
+    padding: 16px 0;
+    flex: 1;
+  }
+
+  .nav-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: #4a4540;
+    padding: 16px 24px 8px;
+  }
+
+  .nav-item {
+    display: block;
+    padding: 10px 24px;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 400;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all 0.18s ease;
+    line-height: 1.4;
+  }
+
+  .nav-item:hover {
+    color: var(--sidebar-active);
+    background: rgba(240,232,216,0.05);
+    border-left-color: #4a4540;
+  }
+
+  .nav-item.active {
+    color: var(--sidebar-active);
+    border-left-color: var(--sidebar-accent);
+    background: rgba(212,168,83,0.08);
+    font-weight: 600;
+  }
+
+  .nav-item .nav-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #4a4540;
+    margin-right: 8px;
+  }
+
+  .nav-item.active .nav-number {
+    color: var(--sidebar-accent);
+  }
+
+  /* ===== MAIN CONTENT ===== */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-height: 100vh;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--card-border);
+    padding: 12px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(8px);
+    transition: background var(--transition);
+  }
+
+  .topbar-breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+  }
+
+  .topbar-breadcrumb strong {
+    color: var(--text);
+  }
+
+  .topbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-theme {
+    background: var(--bg-panel);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    cursor: pointer;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.18s ease;
+  }
+
+  .btn-theme:hover {
+    background: var(--card-bg);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn-menu {
+    display: none;
+    background: var(--bg-panel);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    cursor: pointer;
+    padding: 7px 12px;
+    border-radius: var(--radius);
+    font-size: 18px;
+  }
+
+  /* ===== CONTENT ===== */
+  .content {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 48px 96px;
+  }
+
+  /* Each "page" / chapter section */
+  .chapter {
+    display: none;
+    animation: fadeIn 0.35s ease;
+  }
+  .chapter.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== HERO (Intro) ===== */
+  .hero {
+    margin-bottom: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .chapter-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  h1.page-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    color: var(--heading);
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+
+  .intro-lead {
+    font-size: 19px;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.65;
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+    margin-bottom: 0;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--heading);
+    margin: 48px 0 16px;
+    padding-top: 8px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    position: relative;
+  }
+
+  h2::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 14px;
+    border-radius: 2px;
+  }
+
+  h3 {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--heading);
+    margin: 32px 0 12px;
+    letter-spacing: -0.2px;
+  }
+
+  p {
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  ul, ol {
+    margin: 12px 0 20px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 14px;
+    top: 2px;
+  }
+
+  ol { counter-reset: ol-counter; }
+  ol > li { padding-left: 28px; }
+  ol > li::before {
+    content: counter(ol-counter);
+    counter-increment: ol-counter;
+    background: var(--accent);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 4px;
+    left: 0;
+  }
+
+  li strong {
+    color: var(--heading);
+    font-weight: 600;
+  }
+
+  strong { color: var(--heading); font-weight: 600; }
+  em { font-style: italic; }
+
+  /* ===== CODE ===== */
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  /* ===== ANALOGY CARD ===== */
+  .analogy {
+    background: var(--analogy-bg);
+    border: 1px solid var(--analogy-border);
+    border-left: 4px solid var(--analogy-border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .analogy-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .analogy-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .analogy-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--analogy-icon);
+  }
+
+  .analogy p, .analogy li { font-size: 15.5px; }
+  .analogy ul { margin: 8px 0 0; }
+
+  /* ===== WARNING CARD ===== */
+  .warning {
+    background: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    border-left: 4px solid var(--warning-border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+
+  .warning-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .warning-icon { font-size: 22px; }
+
+  .warning-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--warning-icon);
+  }
+
+  .warning p, .warning li { font-size: 15.5px; }
+
+  /* ===== INFO GRID (for TCP/UDP comparison etc.) ===== */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  .info-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+  }
+
+  .info-card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .info-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: 10px;
+  }
+
+  .info-card p {
+    font-size: 14.5px;
+    margin: 0;
+  }
+
+  .tag-speed { color: #1a8a4a; }
+  .tag-reliable { color: var(--accent-2); }
+
+  /* ===== COMPARISON TABLE ===== */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 15px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .compare-table th {
+    background: var(--code-bg);
+    color: var(--code-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    text-align: left;
+  }
+
+  .compare-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--card-border);
+    background: var(--card-bg);
+    vertical-align: top;
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ===== HANDSHAKE DIAGRAM ===== */
+  .handshake {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 20px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    box-shadow: var(--shadow);
+  }
+
+  .handshake-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--card-border);
+    gap: 12px;
+  }
+  .handshake-row:last-child { border-bottom: none; }
+
+  .hs-actor {
+    width: 70px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .hs-msg {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hs-arrow { color: var(--accent); font-size: 18px; }
+  .hs-tag {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .hs-desc { color: var(--text-muted); font-size: 12px; font-family: 'Source Serif 4', serif; font-style: italic; }
+
+  /* ===== PART DIVIDER ===== */
+  .part-header {
+    background: var(--code-bg);
+    border-radius: var(--radius);
+    padding: 20px 28px;
+    margin: 0 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .part-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--sidebar-accent);
+    line-height: 1;
+    opacity: 0.6;
+  }
+
+  .part-info { flex: 1; }
+  .part-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #6a6055;
+    margin-bottom: 4px;
+  }
+
+  .part-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0e8d8;
+    line-height: 1.2;
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-w);
+    right: 0;
+    height: 3px;
+    background: var(--card-border);
+    z-index: 200;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  /* ===== NAV FOOTER ===== */
+  .chapter-nav {
+    display: flex;
+    gap: 16px;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .chapter-btn {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    cursor: pointer;
+    color: var(--text);
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    text-align: left;
+    transition: all 0.18s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .chapter-btn:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg);
+    color: var(--heading);
+  }
+
+  .chapter-btn .btn-dir {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .chapter-btn .btn-title { font-weight: 600; }
+  .chapter-btn.next { text-align: right; }
+
+  /* ===== MOBILE ===== */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 90;
+  }
+
+  @media (max-width: 768px) {
+    :root { --sidebar-w: 0px; }
+    .sidebar {
+      width: 280px;
+      transform: translateX(-100%);
+    }
+    .sidebar.open { transform: translateX(0); }
+    .overlay.show { display: block; }
+    .main { margin-left: 0; }
+    .topbar { padding: 12px 20px; }
+    .content { padding: 32px 20px 64px; }
+    .btn-menu { display: block; }
+    .info-grid { grid-template-columns: 1fr; }
+    .progress-bar { left: 0; }
+    h1.page-title { font-size: 30px; }
+    .part-number { font-size: 36px; }
+    .compare-table { font-size: 13px; }
+    .compare-table th, .compare-table td { padding: 10px 14px; }
+  }
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f1f5f9; 
+            color: #1e293b; 
+        }
+        
+        /* Effet carte de verre moderne */
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(226, 232, 240, 0.8); 
+            transition: all 0.3s ease; 
+        }
+        
+        .glass-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.15); 
+            border-color: #818cf8; 
+        }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="w-full flex justify-start mb-6 md:absolute md:mb-0 md:top-1/2 md:-translate-y-1/2">
+            <a href=".." class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 font-semibold bg-white px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:border-indigo-200">
+                <i class="fas fa-arrow-left"></i> Menu
+            </a>
+        </div>
+        <br>
+      <div class="sidebar-logo">
+        Réseaux<br>Informatiques
+        <span>// Cours Interactif</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Introduction</div>
+      <a class="nav-item active" onclick="showChapter('intro', this)">
+        <span class="nav-number">00</span>Vue d'ensemble
+      </a>
+
+      <div class="nav-section-label">IPv4 & IPv6</div>
+      <a class="nav-item" onclick="showChapter('ipv4', this)">
+        <span class="nav-number">01</span>IPv4 — Le Vétéran
+      </a>
+      <a class="nav-item" onclick="showChapter('ipv6', this)">
+        <span class="nav-number">02</span>IPv6 — Chef-d'œuvre
+      </a>
+      <a class="nav-item" onclick="showChapter('headers', this)">
+        <span class="nav-number">03</span>Format des Paquets
+      </a>
+
+      <div class="nav-section-label">Anatomie du Réseau</div>
+      <a class="nav-item" onclick="showChapter('couche-internet', this)">
+        <span class="nav-number">04</span>Couche Internet
+      </a>
+      <a class="nav-item" onclick="showChapter('couche-transport', this)">
+        <span class="nav-number">05</span>Couche Transport
+      </a>
+      <a class="nav-item" onclick="showChapter('securite', this)">
+        <span class="nav-number">06</span>Sécurité & ACL
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+        <div class="topbar-breadcrumb">
+          <span id="breadcrumb">Introduction / Vue d'ensemble</span>
+        </div>
+      </div>
+      <div class="topbar-controls">
+        <button class="btn-theme" onclick="toggleTheme()">
+          <span id="themeIcon">🌙</span>
+          <span id="themeLabel">Mode sombre</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ============================== -->
+      <!-- INTRO                          -->
+      <!-- ============================== -->
+      <section class="chapter active" id="chapter-intro">
+        <div class="hero">
+          <span class="chapter-badge">// Introduction</span>
+          <h1 class="page-title">🌐 L'Anatomie du Réseau</h1>
+          <p class="intro-lead">Imaginez Internet non pas comme un nuage magique, mais comme le système postal mondial le plus complexe et le plus rapide jamais créé.</p>
+        </div>
+
+        <p>C'est une excellente initiative de vouloir creuser ce sujet. Pour un futur ingénieur ou technicien, comprendre la mécanique interne d'IP, c'est comme pour un mécanicien de comprendre comment l'essence se mélange à l'air dans un moteur : c'est là que la vraie magie opère.</p>
+
+        <p>Enfilons nos blouses de laboratoire. Nous allons disséquer ces protocoles, non pas en lisant un manuel ennuyeux, mais en comprenant <em>pourquoi</em> ils ont été conçus ainsi.</p>
+
+        <h2>Ce que vous allez apprendre</h2>
+        <p>Ce cours est structuré en trois grandes thématiques :</p>
+        <ul>
+          <li><strong>IPv4 & IPv6</strong> — La structure des adresses, les types de communication et les adresses réservées.</li>
+          <li><strong>Le Format des Paquets</strong> — Comment les données sont encapsulées et acheminées à travers le réseau.</li>
+          <li><strong>Couche Internet, Transport & Sécurité</strong> — Les protocoles ARP, ICMP, TCP, UDP et les Access Control Lists.</li>
+        </ul>
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <span class="analogy-icon">💡</span>
+            <span class="analogy-label">Analogie Pédagogique</span>
+          </div>
+          <p>Quand vous envoyez un message sur Internet, il ne voyage pas d'un bloc. Il est <strong>découpé, mis dans des enveloppes, trié, transporté, puis réassemblé</strong> — exactement comme un colis dans un système postal mondial. Dans ce cours, nous allons enfiler notre casquette de chef de centre de tri pour comprendre chaque étape du voyage.</p>
+        </div>
+
+        <div class="chapter-nav">
+          <div></div>
+          <button class="chapter-btn next" onclick="showChapterByKey('ipv4')">
+            <span class="btn-dir">Suivant →</span>
+            <span class="btn-title">IPv4 — Le Vétéran</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- IPv4                           -->
+      <!-- ============================== -->
+      <section class="chapter" id="chapter-ipv4">
+        <div class="part-header">
+          <div class="part-number">01</div>
+          <div class="part-info">
+            <div class="part-label">Partie 1</div>
+            <div class="part-title">IPv4 — Le Vétéran Indispensable</div>
+          </div>
+        </div>
+
+        <p>Créé dans les années 70, IPv4 n'avait pas prévu le succès d'Internet. Il a donc fallu ruser pour le faire survivre jusqu'à aujourd'hui.</p>
+
+        <h2>1. Structure</h2>
+        <p>L'adresse IPv4 est une séquence de <strong>32 bits</strong> (des 0 et des 1). Pour que ce soit lisible par un humain, on la divise en 4 blocs de 8 bits (octets), convertis en système décimal (de 0 à 255).</p>
+        <ul>
+          <li>Exemple : <code>192.168.10.5</code></li>
+          <li>En binaire : <code>11000000.10101000.00001010.00000101</code></li>
+          <li>Chaque bloc peut valoir entre <code>0</code> et <code>255</code></li>
+        </ul>
+
+        <h2>2. Les Types de Communication</h2>
+        <p>IPv4 possède trois manières de livrer un message :</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-label" style="color:var(--accent-2)">Unicast</div>
+            <h4>1 → 1</h4>
+            <p>Une conversation privée. L'IP source parle à une <em>seule</em> IP de destination. La méthode la plus courante.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label" style="color:#c4400b">Broadcast</div>
+            <h4>1 → Tous</h4>
+            <p>Le mégaphone. Le PC hurle sur le réseau local. Tout le monde entend et doit traiter le paquet. <em>Très gourmand en ressources.</em></p>
+          </div>
+          <div class="info-card" style="grid-column: span 2;">
+            <div class="info-card-label" style="color:#1a8a4a">Multicast</div>
+            <h4>1 → un Groupe</h4>
+            <p>La radio. Un expéditeur émet un flux, et seules les machines qui se sont "abonnées" à cette fréquence (une adresse IP Multicast spécifique) reçoivent les données. Efficace et ciblé.</p>
+          </div>
+        </div>
+
+        <h2>3. Les Adresses Réservées</h2>
+        <p>Toutes les adresses IPv4 ne sont pas publiques. Certaines ont des rôles très spécifiques et <strong>ne doivent pas être utilisées sur Internet</strong>.</p>
+
+        <h3>Adresses Privées (RFC 1918)</h3>
+        <ul>
+          <li><code>10.0.0.0/8</code></li>
+          <li><code>172.16.0.0/12</code></li>
+          <li><code>192.168.0.0/16</code></li>
+        </ul>
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <span class="analogy-icon">💡</span>
+            <span class="analogy-label">Analogie Pédagogique</span>
+          </div>
+          <p>Ce sont les <strong>numéros de poste internes</strong> d'une entreprise (ex : "Poste 404"). N'importe quelle entreprise dans le monde peut avoir un "Poste 404". Mais de l'extérieur, on ne peut pas appeler le poste 404 directement. Il faut appeler le standard (le Routeur public), qui fera la traduction : le <strong>NAT</strong> (Network Address Translation).</p>
+        </div>
+
+        <h3>Loopback — Boucle Locale</h3>
+        <ul>
+          <li>Plage : <code>127.0.0.0/8</code> — le plus courant : <code>127.0.0.1</code></li>
+          <li>C'est l'adresse "miroir". Quand votre ordinateur envoie un paquet vers <code>127.0.0.1</code>, le paquet <em>ne sort jamais sur le câble</em>. Il remonte directement dans l'ordinateur. Utilisé pour tester si votre propre pile réseau fonctionne.</li>
+        </ul>
+
+        <h3>APIPA — Adresse de "Désespoir"</h3>
+        <ul>
+          <li>Plage : <code>169.254.x.x</code></li>
+          <li>Si votre PC est configuré pour recevoir une IP automatiquement (DHCP) mais qu'aucun serveur ne répond, il s'attribue une adresse dans cette plage. C'est le signe qu'il y a un problème réseau !</li>
+        </ul>
+
+        <div class="chapter-nav">
+          <button class="chapter-btn" onclick="showChapterByKey('intro')">
+            <span class="btn-dir">← Précédent</span>
+            <span class="btn-title">Introduction</span>
+          </button>
+          <button class="chapter-btn next" onclick="showChapterByKey('ipv6')">
+            <span class="btn-dir">Suivant →</span>
+            <span class="btn-title">IPv6 — Chef-d'œuvre</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- IPv6                           -->
+      <!-- ============================== -->
+      <section class="chapter" id="chapter-ipv6">
+        <div class="part-header">
+          <div class="part-number">02</div>
+          <div class="part-info">
+            <div class="part-label">Partie 2</div>
+            <div class="part-title">IPv6 — Le Chef-d'œuvre d'Ingénierie</div>
+          </div>
+        </div>
+
+        <p>IPv6 n'est pas juste "IPv4 avec plus de chiffres". C'est une <strong>refonte totale</strong>, pensée pour la performance et l'Internet des Objets (IoT).</p>
+
+        <h2>1. Structure et Règles de Compression</h2>
+        <p>L'adresse passe à <strong>128 bits</strong>, écrite en hexadécimal (chiffres de 0 à 9, lettres de a à f), séparée par des deux-points.</p>
+        <ul>
+          <li>Exemple brut : <code>2001:0db8:0000:0000:0000:8a2e:0370:7334</code></li>
+        </ul>
+
+        <p>Pour ne pas devenir fou en les tapant, deux règles de compression :</p>
+        <ol>
+          <li>On peut supprimer les zéros <em>au début</em> d'un bloc — <code>0db8</code> devient <code>db8</code></li>
+          <li>On peut remplacer <strong>une seule fois</strong> une suite de blocs composés uniquement de zéros par <code>::</code></li>
+        </ol>
+        <ul>
+          <li>L'adresse compressée devient : <code>2001:db8::8a2e:370:7334</code> — Magique !</li>
+        </ul>
+
+        <h2>2. Les Types de Communication — Adieu le Broadcast !</h2>
+        <p>En IPv6, le Broadcast, qui saturait les réseaux, a été <strong>définitivement supprimé</strong>.</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-label" style="color:var(--accent-2)">Unicast</div>
+            <h4>1 → 1</h4>
+            <p>Toujours présent. Identique à IPv4.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label" style="color:#1a8a4a">Multicast</div>
+            <h4>1 → Groupe</h4>
+            <p>Remplace <em>toutes</em> les fonctions du Broadcast. Au lieu de crier à tout le monde, on chuchote à un groupe spécifique.</p>
+          </div>
+          <div class="info-card" style="grid-column: span 2;">
+            <div class="info-card-label" style="color:var(--accent)">Anycast ✦ Nouveauté</div>
+            <h4>1 → Le Plus Proche</h4>
+            <p>Révolutionnaire. Plusieurs serveurs dans le monde partagent la <em>même</em> adresse IP. Quand vous la contactez, le réseau vous dirige automatiquement vers le serveur physiquement le plus proche. Idéal pour la fluidité de Netflix ou YouTube !</p>
+          </div>
+        </div>
+
+        <h2>3. Les Adresses Réservées IPv6</h2>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Plage</th>
+              <th>Nom</th>
+              <th>Équivalent IPv4</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>fe80::/10</code></td>
+              <td>Link-Local</td>
+              <td>—</td>
+              <td>Auto-configurée au démarrage, ne passe pas les routeurs</td>
+            </tr>
+            <tr>
+              <td><code>fd00::/8</code></td>
+              <td>ULA (Unique Local)</td>
+              <td><code>192.168.x.x</code></td>
+              <td>Réseau local privé</td>
+            </tr>
+            <tr>
+              <td><code>::1</code></td>
+              <td>Loopback</td>
+              <td><code>127.0.0.1</code></td>
+              <td>Boucle locale</td>
+            </tr>
+            <tr>
+              <td><code>::</code></td>
+              <td>Unspecified</td>
+              <td><code>0.0.0.0</code></td>
+              <td>Pas encore d'adresse assignée</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>4. Les "Killer Features" d'IPv6</h2>
+
+        <h3>SLAAC — Le Plug & Play Ultime</h3>
+        <p><strong>Stateless Address Autoconfiguration</strong> : Plus besoin de serveur DHCP ! Le PC demande au routeur : <em>"C'est quoi le préfixe (la rue) ici ?"</em>. Le routeur répond <code>2001:db8:1::</code>. Le PC prend ça et génère lui-même la fin de son adresse (de façon aléatoire, ou à partir de son adresse MAC) pour s'inventer une IP unique au monde instantanément.</p>
+
+        <h3>Fin du NAT</h3>
+        <p>Puisqu'on a assez d'adresses publiques pour donner une IP à chaque atome de votre corps, fini les "bidouillages" de traduction d'adresses. La communication redevient de bout en bout (<em>End-to-End</em>), ce qui simplifie les architectures réseau et améliore la sécurité.</p>
+
+        <div class="chapter-nav">
+          <button class="chapter-btn" onclick="showChapterByKey('ipv4')">
+            <span class="btn-dir">← Précédent</span>
+            <span class="btn-title">IPv4 — Le Vétéran</span>
+          </button>
+          <button class="chapter-btn next" onclick="showChapterByKey('headers')">
+            <span class="btn-dir">Suivant →</span>
+            <span class="btn-title">Format des Paquets</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- HEADERS                        -->
+      <!-- ============================== -->
+      <section class="chapter" id="chapter-headers">
+        <div class="part-header">
+          <div class="part-number">03</div>
+          <div class="part-info">
+            <div class="part-label">Partie 3</div>
+            <div class="part-title">Sous le Capot : Le Format des Paquets</div>
+          </div>
+        </div>
+
+        <p>C'est ici que l'ingénierie prend tout son sens. Comparons comment les routeurs lisent ces paquets.</p>
+
+        <h2>Le Problème de l'En-tête IPv4</h2>
+        <p style="font-style:italic;color:var(--text-muted);font-size:15px;margin-bottom:20px;">Le sac à dos mal rangé</p>
+        <p>L'en-tête IPv4 fait au minimum <strong>20 octets</strong>, mais sa taille est <strong>variable</strong> car il contient un champ "Options".</p>
+        <ul>
+          <li>Quand un routeur reçoit un paquet IPv4, il doit d'abord <strong>calculer sa taille</strong>.</li>
+          <li>L'en-tête contient un champ <code>Checksum</code> (vérification d'intégrité). Comme le champ <code>Time To Live</code> diminue à chaque routeur traversé, <strong>chaque routeur du monde doit recalculer ce checksum</strong> avant de faire suivre le paquet.</li>
+          <li>À l'échelle d'Internet, c'est une perte de temps colossale.</li>
+        </ul>
+
+        <h2>Le Génie de l'En-tête IPv6</h2>
+        <p style="font-style:italic;color:var(--text-muted);font-size:15px;margin-bottom:20px;">Le pass VIP et les wagons</p>
+        <p>Les concepteurs d'IPv6 ont drastiquement simplifié l'en-tête principal (<em>Basic Header</em>).</p>
+        <ul>
+          <li>Taille <strong>fixe de 40 octets</strong> — les routeurs n'ont plus à calculer où il se termine.</li>
+          <li>Le <code>Checksum</code> a été <strong>supprimé</strong> ! Les ingénieurs ont estimé que les couches 2 (Ethernet) et 4 (TCP) font déjà ce travail — c'était redondant.</li>
+          <li>Résultat : le routage matériel est <strong>fulgurant</strong>. Le routeur lit l'IP de destination et envoie le paquet sur le bon port instantanément.</li>
+        </ul>
+
+        <table class="compare-table">
+          <thead>
+            <tr><th>Caractéristique</th><th>IPv4</th><th>IPv6</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Taille en-tête</td><td>20–60 octets (variable)</td><td>40 octets (fixe)</td></tr>
+            <tr><td>Checksum</td><td>Oui (recalculé à chaque routeur)</td><td>Supprimé</td></tr>
+            <tr><td>Options</td><td>Dans l'en-tête principal</td><td>En-têtes d'extension</td></tr>
+            <tr><td>Vitesse de routage</td><td>Lente (variable)</td><td>Rapide (fixe)</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Les En-têtes d'Extension — Le Système de Wagons</h2>
+        <p>Mais où sont passées les "Options" complexes (fragmentation, sécurité, routage spécifique) si l'en-tête de base est fixe ?</p>
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <span class="analogy-icon">💡</span>
+            <span class="analogy-label">Analogie Pédagogique — Le Train de Marchandises</span>
+          </div>
+          <p>En <strong>IPv4</strong>, on essayait de rentrer toutes les instructions spéciales dans la <em>locomotive</em> (l'en-tête principal). C'était lourd et complexe pour le chauffeur (le routeur).</p>
+          <p style="margin-top:10px;">En <strong>IPv6</strong>, la locomotive est aérodynamique (en-tête de base de 40 octets). Si le paquet a besoin d'instructions spéciales (comme un chiffrement IPsec), on accroche un <strong>"wagon"</strong> derrière la locomotive. C'est l'<strong>En-tête d'Extension</strong>.</p>
+        </div>
+
+        <p>Le système fonctionne en <strong>chaînage</strong> (<em>Daisy Chaining</em>) :</p>
+        <ol>
+          <li><strong>En-tête IPv6 de base</strong> — "Le prochain wagon est un en-tête de Routage"</li>
+          <li><strong>Extension de Routage</strong> — "Le prochain wagon est un en-tête de Fragmentation"</li>
+          <li><strong>Extension de Fragmentation</strong> — "C'est fini, après moi ce sont les données (TCP/UDP)"</li>
+        </ol>
+
+        <p>La beauté du système : les routeurs intermédiaires ne lisent <strong>que la locomotive</strong>. Ils ignorent les wagons (sauf exception), ce qui permet aux paquets de traverser le monde à une vitesse incroyable, tout en gardant une flexibilité infinie pour ajouter de nouvelles technologies dans le futur.</p>
+
+        <div class="chapter-nav">
+          <button class="chapter-btn" onclick="showChapterByKey('ipv6')">
+            <span class="btn-dir">← Précédent</span>
+            <span class="btn-title">IPv6 — Chef-d'œuvre</span>
+          </button>
+          <button class="chapter-btn next" onclick="showChapterByKey('couche-internet')">
+            <span class="btn-dir">Suivant →</span>
+            <span class="btn-title">Couche Internet</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- COUCHE INTERNET                -->
+      <!-- ============================== -->
+      <section class="chapter" id="chapter-couche-internet">
+        <div class="part-header">
+          <div class="part-number">04</div>
+          <div class="part-info">
+            <div class="part-label">Chapitre 1</div>
+            <div class="part-title">La Couche Internet — Le Système Postal</div>
+          </div>
+        </div>
+
+        <p>La couche Internet a un seul but : <strong>l'acheminement</strong>. Elle doit trouver le meilleur chemin pour transporter un paquet de données du point A au point B, à travers le monde entier.</p>
+
+        <h2>1. Le Protocole IP et l'Adressage</h2>
+        <p>Le protocole IP est l'adresse postale de notre système. Chaque appareil connecté possède une adresse IP unique.</p>
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <span class="analogy-icon">💡</span>
+            <span class="analogy-label">Analogie Pédagogique — La Rue et la Maison</span>
+          </div>
+          <p>Une adresse IP est toujours divisée en deux parties grâce au <strong>Masque de sous-réseau</strong> (ex : <code>255.255.255.0</code>) :</p>
+          <ul>
+            <li><strong>L'ID Réseau (Network) :</strong> C'est le nom de votre rue (ex : <code>192.168.1.0</code>). Tous les ordinateurs de votre réseau partagent cette même "rue".</li>
+            <li><strong>L'ID Hôte (Host) :</strong> C'est le numéro de votre maison dans cette rue (ex : le <code>.15</code>).</li>
+          </ul>
+          <p style="margin-top:10px;">Le masque dit à l'ordinateur : <em>"Regarde les 3 premiers nombres, c'est ta rue. Le dernier, c'est toi."</em></p>
+        </div>
+
+        <h2>2. Le Routage — Trouver le Meilleur Chemin</h2>
+        <p>Que se passe-t-il si votre ordinateur veut parler à un serveur au Japon (une autre "rue") ? Il donne son paquet au <strong>Routeur</strong> (votre box internet, la <strong>Passerelle par défaut</strong>).</p>
+        <ul>
+          <li><strong>Le Routeur est le centre de tri :</strong> Il ouvre l'enveloppe, regarde l'IP de destination, consulte sa <strong>Table de routage</strong> (sa carte du monde), et décide de l'envoyer au prochain routeur le plus proche de la destination.</li>
+        </ul>
+
+        <h2>3. Les Protocoles "Outils" : ARP, ICMP, IGMP</h2>
+        <p>Le protocole IP ne fait pas tout le travail seul. Il a des assistants :</p>
+
+        <h3>ARP — L'Annuaire Local</h3>
+        <ul>
+          <li><strong>Le problème :</strong> IP connaît l'adresse logique (IP), mais sur un réseau physique, les cartes réseau ne se parlent qu'avec leur adresse physique (<strong>Adresse MAC</strong>, gravée en usine).</li>
+          <li><strong>La solution :</strong> ARP crie dans la pièce : <em>"Qui possède l'IP <code>192.168.1.50</code> ? Donnez-moi votre adresse MAC !"</em>. La machine concernée répond, et la communication physique peut commencer.</li>
+        </ul>
+
+        <h3>ICMP — Le Service Après-Vente</h3>
+        <ul>
+          <li>C'est le protocole de diagnostic. Si un routeur détruit un paquet car la destination est introuvable, il utilise ICMP pour renvoyer un message d'erreur à l'expéditeur.</li>
+          <li>C'est lui qui fait fonctionner la célèbre commande <code>ping</code>.</li>
+        </ul>
+
+        <h3>IGMP — L'Abonnement Magazine</h3>
+        <ul>
+          <li>Au lieu d'envoyer un flux vidéo individuellement à 1000 personnes (ce qui saturerait le réseau), le serveur n'envoie qu'un seul flux.</li>
+          <li>IGMP permet aux ordinateurs de dire au routeur : <em>"Je m'abonne à ce flux Multicast"</em>. Le routeur se charge de le dupliquer uniquement pour les abonnés.</li>
+        </ul>
+
+        <h2>4. Pourquoi Passer à IPv6 ?</h2>
+        <p>Nous avons <strong>épuisé les 4,3 milliards d'adresses IPv4</strong>. C'est comme si nous n'avions plus de numéros de téléphone disponibles.</p>
+        <ul>
+          <li>L'IPv6 (ex : <code>2001:0db8:85a3::8a2e:0370:7334</code>) utilise 128 bits.</li>
+          <li>Cela représente tellement d'adresses que nous pourrions donner une adresse IP unique à chaque grain de sable sur Terre.</li>
+          <li>De plus, IPv6 est plus rapide à "trier" pour les routeurs et intègre la sécurité par défaut.</li>
+        </ul>
+
+        <div class="chapter-nav">
+          <button class="chapter-btn" onclick="showChapterByKey('headers')">
+            <span class="btn-dir">← Précédent</span>
+            <span class="btn-title">Format des Paquets</span>
+          </button>
+          <button class="chapter-btn next" onclick="showChapterByKey('couche-transport')">
+            <span class="btn-dir">Suivant →</span>
+            <span class="btn-title">Couche Transport</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- COUCHE TRANSPORT               -->
+      <!-- ============================== -->
+      <section class="chapter" id="chapter-couche-transport">
+        <div class="part-header">
+          <div class="part-number">05</div>
+          <div class="part-info">
+            <div class="part-label">Chapitre 2</div>
+            <div class="part-title">La Couche Transport — La Remise en Main Propre</div>
+          </div>
+        </div>
+
+        <p>La couche Internet a réussi ! Le paquet est arrivé au bon ordinateur. Mais cet ordinateur fait tourner un navigateur Web, Spotify, un jeu vidéo et un client mail en même temps. À qui est destiné le paquet ?</p>
+
+        <p>C'est ici qu'intervient la <strong>Couche Transport</strong>, grâce aux <strong>Ports</strong>. C'est le numéro de l'appartement dans l'immeuble.</p>
+        <ul>
+          <li>Port <code>80</code> — HTTP (Web)</li>
+          <li>Port <code>443</code> — HTTPS (Web sécurisé)</li>
+          <li>Port <code>25</code> — SMTP (E-mail)</li>
+          <li>Port <code>21</code> — FTP (Transfert de fichiers)</li>
+          <li>Port <code>22</code> — SSH (Accès distant sécurisé)</li>
+        </ul>
+
+        <p>Deux livreurs s'affrontent avec des méthodes totalement opposées :</p>
+
+        <h2>1. UDP — Le Livreur Pressé</h2>
+        <p>UDP (<em>User Datagram Protocol</em>) ne s'encombre d'aucune politesse. Il prend les données et les jette sur le réseau le plus vite possible.</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-label tag-speed">Avantage</div>
+            <h4>⚡ Vitesse</h4>
+            <p>Pas de vérification, pas d'accusé de réception. Débit maximal garanti.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label" style="color:#b06010">Inconvénient</div>
+            <h4>📦 Perte possible</h4>
+            <p>Si un paquet se perd en route, tant pis. S'ils arrivent dans le désordre, tant pis.</p>
+          </div>
+        </div>
+
+        <p><strong>Cas d'usage :</strong> Appels vidéo Skype, jeux en ligne, streaming. Si vous perdez une fraction de seconde de données, il vaut mieux avoir un petit "glitch" graphique et continuer, plutôt que de figer tout le jeu pour attendre qu'un paquet perdu soit renvoyé.</p>
+
+        <h2>2. TCP — Le Livreur Paranoïaque</h2>
+        <p>TCP (<em>Transmission Control Protocol</em>) est la fiabilité absolue. C'est un recommandé avec accusé de réception.</p>
+
+        <h3>Le "Three-Way Handshake"</h3>
+        <p>Avant d'envoyer la moindre donnée, TCP s'assure que l'autre est prêt à écouter :</p>
+
+        <div class="handshake">
+          <div class="handshake-row">
+            <div class="hs-actor">Client</div>
+            <div class="hs-msg">
+              <span class="hs-arrow">→</span>
+              <span class="hs-tag">SYN</span>
+              <span class="hs-desc">"Bonjour, tu m'entends ?"</span>
+            </div>
+          </div>
+          <div class="handshake-row">
+            <div class="hs-actor">Serveur</div>
+            <div class="hs-msg">
+              <span class="hs-arrow">←</span>
+              <span class="hs-tag">SYN-ACK</span>
+              <span class="hs-desc">"Oui je t'entends, et toi ?"</span>
+            </div>
+          </div>
+          <div class="handshake-row">
+            <div class="hs-actor">Client</div>
+            <div class="hs-msg">
+              <span class="hs-arrow">→</span>
+              <span class="hs-tag">ACK</span>
+              <span class="hs-desc">"Parfait, je commence à parler !"</span>
+            </div>
+          </div>
+        </div>
+
+        <p><strong>Les règles de TCP :</strong> Il numérote tous les paquets. Si le serveur ne confirme pas la réception du paquet n°4, le client le renvoie. Il remet tout dans le bon ordre à l'arrivée.</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-label tag-reliable">Avantage</div>
+            <h4>🛡️ Fiabilité</h4>
+            <p>Chaque paquet est confirmé. Réception dans l'ordre garanti.</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label" style="color:#b06010">Inconvénient</div>
+            <h4>⏱️ Latence</h4>
+            <p>Le handshake et les accusés de réception ajoutent un délai non négligeable.</p>
+          </div>
+        </div>
+
+        <p><strong>Cas d'usage :</strong> Transfert bancaire, chargement de page Web. S'il manque un seul paquet, votre relevé bancaire serait corrompu ou la page ne s'afficherait pas. La fiabilité prime sur la vitesse.</p>
+
+        <h2>Récapitulatif TCP vs UDP</h2>
+        <table class="compare-table">
+          <thead>
+            <tr><th>Critère</th><th>TCP</th><th>UDP</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Connexion</td><td>Établie (3-Way Handshake)</td><td>Sans connexion</td></tr>
+            <tr><td>Fiabilité</td><td>Garantie (ACK)</td><td>Aucune</td></tr>
+            <tr><td>Ordre</td><td>Respecté</td><td>Non garanti</td></tr>
+            <tr><td>Vitesse</td><td>Plus lente</td><td>Plus rapide</td></tr>
+            <tr><td>Usage</td><td>Web, e-mail, banque, SSH</td><td>Vidéo, jeux, DNS, VoIP</td></tr>
+          </tbody>
+        </table>
+
+        <div class="chapter-nav">
+          <button class="chapter-btn" onclick="showChapterByKey('couche-internet')">
+            <span class="btn-dir">← Précédent</span>
+            <span class="btn-title">Couche Internet</span>
+          </button>
+          <button class="chapter-btn next" onclick="showChapterByKey('securite')">
+            <span class="btn-dir">Suivant →</span>
+            <span class="btn-title">Sécurité & ACL</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================== -->
+      <!-- SECURITE                       -->
+      <!-- ============================== -->
+      <section class="chapter" id="chapter-securite">
+        <div class="part-header">
+          <div class="part-number">06</div>
+          <div class="part-info">
+            <div class="part-label">Chapitre 3</div>
+            <div class="part-title">Sécurité, Filtrage & ACL</div>
+          </div>
+        </div>
+
+        <p>Maintenant que nos données voyagent bien, il faut les <strong>sécuriser</strong>. Les routeurs et les pare-feu agissent comme des agents de sécurité à l'entrée d'un bâtiment privé : ils utilisent le <em>filtrage réseau</em>.</p>
+
+        <h2>1. Les ACL — Access Control Lists</h2>
+        <p>Une ACL est simplement la <strong>"liste des invités"</strong> (et des personnes bannies) que le routeur lit de haut en bas. Dès qu'une règle correspond au paquet, le routeur l'applique et arrête de lire la liste.</p>
+        <ul>
+          <li><strong>Permit</strong> — on laisse passer le paquet</li>
+          <li><strong>Deny</strong> — on détruit le paquet</li>
+        </ul>
+
+        <div class="warning">
+          <div class="warning-header">
+            <span class="warning-icon">⚠️</span>
+            <span class="warning-label">Règle d'Or — Le "Deny Any" Implicite</span>
+          </div>
+          <p>À la fin de chaque ACL, il y a une ligne <strong>invisible et immuable</strong> :</p>
+          <p style="margin-top:8px;font-style:italic;">"Tout ce qui n'a pas été explicitement autorisé est interdit."</p>
+          <p style="margin-top:8px;">Si un paquet traverse toute la liste sans trouver de règle qui lui correspond, il est <strong>jeté à la poubelle</strong>. C'est pourquoi l'ordre des règles dans une ACL est absolument critique !</p>
+        </div>
+
+        <h2>2. ACL Standard vs Étendue</h2>
+
+        <h3>L'ACL Standard — Le Filtrage Basique</h3>
+        <ul>
+          <li>Elle ne regarde <strong>que l'IP source</strong> (l'expéditeur).</li>
+          <li>C'est du "tout ou rien" : soit la machine entière est autorisée, soit elle est bloquée.</li>
+        </ul>
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <span class="analogy-icon">💡</span>
+            <span class="analogy-label">Analogie — Le Videur Simple</span>
+          </div>
+          <p>Le videur regarde <em>uniquement le visage de la personne</em>. "Toi, tu viens de l'ordinateur de la comptabilité (<code>10.0.0.5</code>), tu n'entres pas dans la salle des serveurs." Peu importe ce que la personne voulait faire dans la salle — elle ne passe pas.</p>
+        </div>
+
+        <h3>L'ACL Étendue — Le Filtrage Chirurgical</h3>
+        <ul>
+          <li>Elle regarde : l'IP source, l'IP de destination, le protocole (TCP/UDP) et le port d'application.</li>
+          <li>Permet une granularité très fine dans les règles de sécurité.</li>
+        </ul>
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <span class="analogy-icon">💡</span>
+            <span class="analogy-label">Analogie — Le Videur Expert</span>
+          </div>
+          <p>Le videur regarde <em>le visage, la destination ET ce que la personne a dans les mains</em>.</p>
+          <p style="margin-top:10px;"><strong>Exemple concret :</strong> "L'étudiant A (<code>10.0.1.5</code>) est autorisé à joindre le Serveur B (<code>10.0.2.10</code>), mais <em>uniquement</em> pour regarder le site web (TCP port <code>80</code>). Si ce même étudiant essaie de transférer des fichiers sur ce même serveur (TCP port <code>21</code>), on le bloque !"</p>
+        </div>
+
+        <h2>Récapitulatif des ACL</h2>
+        <table class="compare-table">
+          <thead>
+            <tr><th>Critère</th><th>ACL Standard</th><th>ACL Étendue</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>IP Source</td><td>✅ Oui</td><td>✅ Oui</td></tr>
+            <tr><td>IP Destination</td><td>❌ Non</td><td>✅ Oui</td></tr>
+            <tr><td>Protocole (TCP/UDP)</td><td>❌ Non</td><td>✅ Oui</td></tr>
+            <tr><td>Port</td><td>❌ Non</td><td>✅ Oui</td></tr>
+            <tr><td>Granularité</td><td>Faible</td><td>Très fine</td></tr>
+            <tr><td>Position recommandée</td><td>Proche de la destination</td><td>Proche de la source</td></tr>
+          </tbody>
+        </table>
+
+        <div class="warning">
+          <div class="warning-header">
+            <span class="warning-icon">⚠️</span>
+            <span class="warning-label">Positionnement des ACL</span>
+          </div>
+          <ul>
+            <li>Une <strong>ACL Standard</strong> doit être placée <em>aussi proche que possible de la destination</em>, car elle bloque tout trafic d'une source — même le trafic légitime vers d'autres destinations.</li>
+            <li>Une <strong>ACL Étendue</strong> doit être placée <em>aussi proche que possible de la source</em>, pour éviter que le trafic inutile ne traverse le réseau inutilement.</li>
+          </ul>
+        </div>
+
+        <div class="chapter-nav">
+          <button class="chapter-btn" onclick="showChapterByKey('couche-transport')">
+            <span class="btn-dir">← Précédent</span>
+            <span class="btn-title">Couche Transport</span>
+          </button>
+          <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-muted);letter-spacing:1px;">FIN DU COURS ✦</span>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /content -->
+  </main>
+</div><!-- /layout -->
+
+<script>
+  /* ===== CHAPTER DATA ===== */
+  const chapters = [
+    { key: 'intro',            label: 'Introduction / Vue d\'ensemble' },
+    { key: 'ipv4',             label: 'IPv4 / Le Vétéran Indispensable' },
+    { key: 'ipv6',             label: 'IPv6 / Chef-d\'œuvre d\'Ingénierie' },
+    { key: 'headers',          label: 'Partie 3 / Format des Paquets' },
+    { key: 'couche-internet',  label: 'Chapitre 1 / Couche Internet' },
+    { key: 'couche-transport', label: 'Chapitre 2 / Couche Transport' },
+    { key: 'securite',         label: 'Chapitre 3 / Sécurité & ACL' },
+  ];
+
+  let currentIndex = 0;
+
+  function showChapter(key, navEl) {
+    // hide all
+    document.querySelectorAll('.chapter').forEach(c => c.classList.remove('active'));
+    // show target
+    const target = document.getElementById('chapter-' + key);
+    if (target) target.classList.add('active');
+
+    // update nav
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    if (navEl) navEl.classList.add('active');
+    else {
+      document.querySelectorAll('.nav-item').forEach(n => {
+        if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + key + "'")) {
+          n.classList.add('active');
+        }
+      });
+    }
+
+    // update breadcrumb
+    const idx = chapters.findIndex(c => c.key === key);
+    if (idx !== -1) {
+      currentIndex = idx;
+      document.getElementById('breadcrumb').innerHTML = chapters[idx].label.replace(' / ', ' / <strong>') + '</strong>';
+    }
+
+    // update progress
+    const pct = chapters.length > 1 ? (currentIndex / (chapters.length - 1)) * 100 : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+
+    // scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // close sidebar on mobile
+    if (window.innerWidth <= 768) closeSidebar();
+  }
+
+  function showChapterByKey(key) {
+    showChapter(key, null);
+  }
+
+  /* ===== THEME ===== */
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
+    document.getElementById('themeLabel').textContent = isDark ? 'Mode sombre' : 'Mode clair';
+  }
+
+  /* ===== SIDEBAR (mobile) ===== */
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  }
+
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('show');
+  }
+
+  // Init breadcrumb
+  document.getElementById('breadcrumb').innerHTML = 'Introduction / <strong>Vue d\'ensemble</strong>';
+</script>
+</body>
+</html>
