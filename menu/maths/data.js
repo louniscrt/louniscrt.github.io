@@ -1240,4 +1240,3 @@ APP_DATA.quizzes = {
 };
 
 window.APP_DATA = APP_DATA;
-window.APP_DATA = APP_DATA;
