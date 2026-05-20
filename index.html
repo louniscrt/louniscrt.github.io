@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lounis Cartron — Portfolio</title>
+  <meta name="description" content="Portfolio de Lounis Cartron, Alternant chez Eiffage (Résintel).">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =========================================
+       VARIABLES - THÈME MARRON ET BEIGE DOUX
+       ========================================= */
+    :root {
+      --bg-color:oklch(72.631% 0.0202 46.57);       /* Beige sable très doux (moins agressif) */
+      --text-dark: #4a3b32;      /* Marron moyen/foncé (plus doux que du noir) */
+      --text-light: #7b6356;     /* Marron grisé doux */
+      --accent: #b07d62;         /* Caramel doux */
+      --accent-hover: #96664d;
+      
+      --card-dark: #3e312a;      /* Marron profond adouci */
+      --card-dark-hover: #4a3b32;
+      --text-on-dark: #fcfaf8;   
+      --muted-on-dark: #c2b4ab;  
+      
+      --border:  oklch(72.631% 0.0202 46.57);           /* Beige soutenu pour les bordures */
+      --radius: 20px;
+      --max-width: 1080px;
+      --transition: 0.4s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =========================================
+       TYPOGRAPHIE
+       ========================================= */
+    h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+    h2.section-title { 
+      font-size: clamp(2rem, 4vw, 2.8rem); 
+      margin-bottom: 2.5rem; 
+      text-transform: uppercase; 
+      letter-spacing: 0.05em; 
+      color: var(--text-dark);
+      text-align: center;
+    }
+    p { margin-bottom: 1rem; }
+    a { text-decoration: none; color: inherit; }
+    
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; }
+
+    /* =========================================
+       NAVIGATION
+       ========================================= */
+    header.navbar {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background:  oklch(72.631% 0.0202 46.57);  
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+    .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.05em; color: var(--text-dark); }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-weight: 600; font-size: 0.95rem; color: var(--text-light); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .top-spacer { height: 100px; }
+
+    /* =========================================
+       À PROPOS
+       ========================================= */
+    .about-card {
+      background-color: var(--card-dark);
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(62, 49, 42, 0.1);
+    }
+    .about-content { padding: 4rem; color: var(--text-on-dark); display: flex; flex-direction: column; justify-content: center; }
+    .about-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 0.5rem; }
+    .about-subtitle { font-size: 1.1rem; font-weight: 600; color: var(--accent); margin-bottom: 2rem; }
+    
+    .about-text { color: var(--muted-on-dark); font-size: 1.05rem; margin-bottom: 1.5rem; }
+    .about-text strong { color: var(--text-on-dark); font-weight: 600; }
+    
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background-color: var(--accent); color: #fff;
+      padding: 0.8rem 1.8rem; border-radius: 50px; font-weight: 600;
+      transition: background-color 0.3s, transform 0.3s;
+      width: fit-content; margin-top: 1rem;
+    }
+    .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-2px); }
+
+    .about-image-wrapper { height: 100%; width: 100%; position: relative; }
+    .about-image { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+    /* =========================================
+       FORMATIONS (PARCOURS AVEC IMAGES)
+       ========================================= */
+    .timeline { display: flex; flex-direction: column; gap: 2rem; max-width: 950px; margin: 0 auto; }
+    .timeline-item {
+      background-color:  oklab(79.11200000000001% 0.01106 0.01065);   border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem;
+      box-shadow: 0 10px 30px rgba(62, 49, 42, 0.03);
+      transition: transform var(--transition);
+      align-items: center;
+    }
+    .timeline-item:hover { transform: translateY(-3px); }
+    
+    .timeline-img-wrapper {
+      width: 100%; height: 100%; min-height: 200px;
+      border-radius: calc(var(--radius) - 5px);
+      overflow: hidden;
+    }
+    .timeline-img-wrapper img {
+      width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;
+    }
+    .timeline-item:hover .timeline-img-wrapper img { transform: scale(1.05); }
+
+    .timeline-content-wrapper { display: flex; flex-direction: column; justify-content: center; }
+    .timeline-date {
+      font-weight: 700; color: var(--accent); font-size: 0.95rem;
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;
+    }
+    .timeline-title { font-size: 1.5rem; color: var(--text-dark); margin-bottom: 0.25rem; }
+    .timeline-school { font-weight: 600; color: var(--text-light); margin-bottom: 1rem; }
+    .timeline-desc { color: var(--text-light); font-size: 1.05rem; margin-bottom: 0;}
+
+    /* =========================================
+       COMPÉTENCES
+       ========================================= */
+    .toggle-wrapper { display: flex; justify-content: center; margin-bottom: 3rem; }
+    .toggle-container {
+      display: inline-flex; background-color: var(--card-dark);
+      border-radius: 50px; padding: 5px;
+    }
+    .toggle-btn {
+      background: transparent; color: var(--muted-on-dark); border: none; 
+      padding: 10px 24px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; 
+      cursor: pointer; transition: 0.3s; font-family: inherit;
+    }
+    .toggle-btn.active { background-color: var(--accent); color: #fff; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .skills-grid.hidden { display: none; }
+    
+    .skill-card {
+      background-color: var(--card-dark); border-radius: 16px;
+      cursor: pointer; transition: var(--transition);
+      display: flex; flex-direction: column;
+    }
+    .skill-card:hover { background-color: var(--card-dark-hover); transform: translateY(-3px); }
+    
+    .skill-header {
+      padding: 3rem 1.5rem; display: flex; flex-direction: column; 
+      align-items: center; justify-content: center; gap: 1rem; text-align: center;
+    }
+    .skill-icon { width: 44px; height: 44px; color: var(--accent); }
+    .skill-title { font-size: 1.25rem; font-weight: 600; color: var(--text-on-dark); }
+
+    .accordion-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .accordion-inner { padding: 0 1.5rem 2.5rem 1.5rem; }
+    
+    .skill-list { color: var(--muted-on-dark); font-size: 0.95rem; list-style-position: inside; }
+    .skill-list li { margin-bottom: 0.6rem; }
+    .skill-list li strong { color: var(--text-on-dark); }
+    
+    /* Nouveau design pour les Résultats */
+    .skill-result {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
+      color: var(--muted-on-dark);
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .skill-result strong {
+      color: var(--accent);
+      font-style: normal;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* =========================================
+       PROJETS
+       ========================================= */
+    .project-card {
+      background-color: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 3rem; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(62, 49, 42, 0.03);
+    }
+    
+    .project-trigger {
+      cursor: pointer; position: relative; height: 45vh; min-height: 350px; overflow: hidden;
+    }
+    .project-trigger img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    .project-trigger:hover img { transform: scale(1.03); }
+    
+    .project-overlay {
+      position: absolute; inset: 0; 
+      background: linear-gradient(to top, rgba(62, 49, 42, 0.8) 0%, transparent 70%);
+      display: flex; justify-content: space-between; align-items: flex-end; padding: 2.5rem;
+    }
+    .project-badge { 
+      font-size: 0.8rem; font-weight: 700; color: var(--accent); 
+      text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem; 
+    }
+    .project-title h3 { font-size: clamp(1.8rem, 3vw, 2.5rem); color: #fff; }
+    
+    .icon-cross { 
+      width: 44px; height: 44px; border-radius: 50%; background-color: var(--accent);
+      display: flex; align-items: center; justify-content: center; transition: var(--transition);
+    }
+    .icon-cross::before, .icon-cross::after { content: ''; position: absolute; background: #fff; border-radius: 2px; }
+    .icon-cross::before { width: 16px; height: 2px; }
+    .icon-cross::after { width: 2px; height: 16px; }
+    .project-card.is-open .icon-cross { transform: rotate(45deg); background-color: var(--card-dark); }
+
+    .project-content-inner { padding: 3rem; display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; border-top: 1px solid var(--border); }
+    .project-label { font-size: 1.2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 1rem; }
+    .project-content-inner p, .project-content-inner ul { color: var(--text-light); font-size: 1.05rem; }
+    .project-content-inner ul { list-style-position: inside; }
+    .project-content-inner li { margin-bottom: 0.5rem; }
+    .project-content-inner strong { color: var(--text-dark); }
+
+    /* =========================================
+       PASSIONS & CV
+       ========================================= */
+    .passion-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem; }
+    .passion-img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+    
+    .cv-container { text-align: center; max-width: 700px; margin: 0 auto; }
+    .cv-img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 2rem; }
+
+    /* =========================================
+       CONTACT & FOOTER
+       ========================================= */
+    .contact-section { 
+      text-align: center; padding: 6rem 2rem; 
+      background-color: var(--card-dark); color: var(--text-on-dark);
+      border-radius: var(--radius); margin-bottom: 4rem;
+    }
+    .contact-section h2 { color: var(--text-on-dark); }
+    .contact-email { 
+      font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: var(--text-on-dark); 
+      display: inline-block; margin-top: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 5px; 
+    }
+    .contact-email:hover { color: var(--accent); }
+
+    footer { padding: 2rem 0; text-align: center; color: var(--text-light); font-size: 0.9rem; border-top: 1px solid var(--border); }
+
+    /* =========================================
+       ANIMATIONS & RESPONSIVE
+       ========================================= */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .about-card { grid-template-columns: 1fr; }
+      .about-content { padding: 2.5rem; text-align: center; }
+      .btn-primary { margin: 1.5rem auto 0 auto; }
+      
+      .timeline-item { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; }
+      .timeline-img-wrapper { min-height: 250px; }
+      
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-content-inner { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+      .passion-block { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .project-trigger { height: 35vh; min-height: 250px; }
+      .project-overlay { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">Lounis<span>.</span></div>
+      <ul class="nav-links">
+        <li><a href="#about">À Propos</a></li>
+        <li><a href="#formations">Parcours</a></li>
+        <li><a href="#skills">Compétences</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#passions">Divers</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="top-spacer"></div>
+<br><br>
+  <section id="about" class="container reveal">
+    <h2 class="section-title">À Propos de moi</h2>
+    
+    <div class="about-card">
+      <div class="about-content">
+        <h1 class="about-title">Je suis Lounis CARTRON</h1>
+        <p class="about-subtitle">Étudiant en BUT Réseaux et Télécommunications</p>
+        
+        <p class="about-text">
+          Actuellement en formation à l'IUT d'Aubière, j'acquiers les concepts fondamentaux des réseaux, de l'administration système et des télécommunications. Bien que j'aie une <strong>affinité particulière pour les infrastructures</strong>, j'ai choisi ce cursus pour élargir ma vision technique avec pour ambition de me spécialiser en <strong>cybersécurité</strong>.
+        </p>
+        
+        <p class="about-text">
+          Je suis quelqu'un de naturellement <strong>curieux</strong> et <strong>rigoureux</strong>, accordant une grande importance à l'<strong>esprit d'équipe</strong>.
+        </p>
+        
+        <p class="about-text">
+          Désireux de m'immerger dans le monde professionnel, j'aurai le plaisir d'intégrer les équipes d'<strong>Eiffage (Résintel)</strong> en alternance dès <strong>septembre 2026</strong> pour une durée de 2 ans, afin de participer activement au déploiement de solutions télécoms professionnelles.
+        </p>
+        
+        <a href="#cv" class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Voir mon CV
+        </a>
+      </div>
+      
+      <div class="about-image-wrapper">
+        <img src="img/pdp.jpeg" alt="Lounis Cartron" class="about-image">
+      </div>
+    </div>
+  </section>
+<br><br><br><br>
+  <section id="formations" class="container reveal">
+    <h2 class="section-title">Mon Parcours</h2>
+    <br>
+    <div class="timeline">
+      
+      <div class="timeline-item">
+        <div class="timeline-img-wrapper">
+          <img src="img/iut.webp" alt="IUT Clermont Auvergne">
+        </div>
+        <div class="timeline-content-wrapper">
+          <div class="timeline-date">Sept 2025 - Présent</div>
+          <h3 class="timeline-title">BUT Réseaux et Télécommunications</h3>
+          <p class="timeline-school">IUT Clermont Auvergne - Site d'Aubière</p>
+          <p class="timeline-desc">Apprentissage approfondi des protocoles réseaux, de l'administration système, des services télécoms et de la sécurité informatique au sein d'environnements virtualisés ou physiques.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-img-wrapper">
+          <img src="img/lycée.webp" alt="Lycée Godefroy de Bouillon">
+        </div>
+        <div class="timeline-content-wrapper">
+          <div class="timeline-date">2022 - 2025</div>
+          <h3 class="timeline-title">Baccalauréat Général</h3>
+          <p class="timeline-school">Lycée Godefroy de Bouillon - Clermont-Ferrand</p>
+          <p class="timeline-desc">Spécialités : Mathématiques et Physique-Chimie. Une formation scientifique rigoureuse axée sur la logique et la résolution méthodique de problèmes complexes.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+<br><br><br><br>
+  <section id="skills" class="container reveal">
+    <h2 class="section-title">Mes Compétences</h2>
+    
+    <div class="toggle-wrapper">
+      <div class="toggle-container">
+        <button class="toggle-btn" id="btn-humaines" onclick="switchSkills('humaines')">Humaines</button>
+        <button class="toggle-btn active" id="btn-techniques" onclick="switchSkills('techniques')">Techniques</button>
+      </div>
+    </div>
+
+    <div class="skills-grid" id="grid-techniques">
+      
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>
+          <span class="skill-title">Réseaux</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Configuration <strong>Cisco 1841</strong> (CLI IOS)</li>
+            <li>VLANs & Segmentation (Router-on-a-stick)</li>
+            <li>Routage, NAT/PAT, DHCP, DNS</li>
+            <li>Analyse de trames via <strong>Wireshark</strong></li>
+          </ul>
+         
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span class="skill-title">Programmation</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Automatisation & Scripts <strong>Python</strong> / Bash</li>
+            <li>Développement Backend <strong>PHP</strong></li>
+            <li>Modélisation et requêtes <strong>MySQL</strong></li>
+            <li>Bases d'intégration HTML / CSS</li>
+          </ul>
+          
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+          <span class="skill-title">Télécommunications</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Câblage structuré (RJ45, fibre optique)</li>
+            <li>Virtualisation des environnements (VMware)</li>
+            <li>Notions de traitement du signal et fréquences</li>
+          </ul>
+          
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="skill-title">Téléphonie</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Déploiement téléphonie IP (VoIP)</li>
+            <li>Administration de l'IPBX <strong>XiVO</strong></li>
+            <li>Configuration des trunks et protocole <strong>SIP</strong></li>
+          </ul>
+          
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8 11h8"/><path d="M12 15V7"/></svg>
+          <span class="skill-title">Sécurité & Système</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Serveurs <strong>Linux</strong> (Debian) & Conteneurs Docker</li>
+            <li><strong>Active Directory</strong> (Utilisateurs & GPO)</li>
+            <li>Sécurisation des accès et gestion des droits</li>
+            <li>Sensibilisation aux vulnérabilités</li>
+          </ul>
+         
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c2.106 0 4.5 1.71 4.5 4"/><path d="M12 15l2-4 2 4"/><path d="M11 21h4"/><path d="M22 19h-4l-1.5-3h-5l-1.5 3H6"/><path d="M15 11l-3 6h6z"/></svg>
+          <span class="skill-title">Langues</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li><strong>Anglais :</strong> Niveau B1+ (Compréhension technique)</li>
+            <li><strong>Espagnol :</strong> Niveau C1 (Courant)</li>
+          </ul>
+          
+        </div></div>
+      </div>
+
+    </div>
+
+    <div class="skills-grid hidden" id="grid-humaines">
+      
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          <span class="skill-title">Autonomie</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Apprentissage en autodidacte permanent.</li>
+            <li>Création et gestion d'une infrastructure Home Lab complète.</li>
+          </ul>
+          
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span class="skill-title">Rigueur</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Processus de diagnostics méthodique face aux pannes.</li>
+            <li>Documentation systématique des interventions.</li>
+          </ul>
+          
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="skill-title">Esprit d'équipe</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Communication transparente pour les projets communs.</li>
+            <li>Entraide lors de résolutions d'incidents complexes.</li>
+          </ul>
+          
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="skill-title">Curiosité</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Veille technologique active et quotidienne.</li>
+            <li>Volonté constante de comprendre le fonctionnement profond des systèmes.</li>
+          </ul>
+          
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+<br><br><br><br>
+  <section id="projects" class="container reveal">
+    <h2 class="section-title">Mes Projets</h2>
+    <br>
+    
+    <div class="project-card" onclick="toggleAccordion(this)">
+      <div class="project-trigger">
+        <img src="img/homelab_img.png" alt="Home Lab Infra">
+        <div class="project-overlay">
+          <div>
+            <span class="project-badge">Infrastructure Réseau</span>
+            <div class="project-title"><h3>Home Lab & Routage Cisco</h3></div>
+          </div>
+          <div class="icon-cross"></div>
+        </div>
+      </div>
+      <div class="accordion-body">
+        <div class="project-content-inner">
+          <div>
+            <p class="project-label">Objectif du projet</p>
+            <p>Déployer une infrastructure réseau physique complète à domicile pour pratiquer l'administration réseau et simuler des environnements de production.</p>
+          </div>
+          <div>
+            <p class="project-label">Réalisations Techniques</p>
+            <ul>
+              <li>Configuration détaillée d'un routeur <strong>Cisco 1841</strong> via l'interface en ligne de commande (IOS).</li>
+              <li>Gestion de l'accès WAN via <strong>NAT/PAT</strong> et sécurisation par l'écriture d'ACLs.</li>
+              <li>Hébergement et isolation de services applicatifs via des conteneurs gérés par <strong>Portainer</strong>.</li>
+            </ul>
+            <br>
+            <p class="project-label">Résultats Obtenus</p>
+            <ul>
+              <li>Hébergement de services tels que des serveurs web, serveur de film Plex, serveur FTP, Cloud ou encore gestionnaire de mot de passes.</li>
+              <li>Environnement de test fonctionnel permettant de simuler des pannes réelles et de tester des configurations réseaux avant déploiement.</li>
+              <li>Maîtrise de la configuration de routeurs Cisco 1841 via CLI IOS, incluant VLANs, routage statique et dynamique, NAT/PAT, DHCP et DNS.</li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="toggleAccordion(this)">
+      <div class="project-trigger">
+        <img src="img/cyberskills_img.jpg" alt="Plateforme Cyberskills">
+        <div class="project-overlay">
+          <div>
+            <span class="project-badge">Développement Web & BDD</span>
+            <div class="project-title"><h3>Plateforme Cyberskills</h3></div>
+          </div>
+          <div class="icon-cross"></div>
+        </div>
+      </div>
+      <div class="accordion-body">
+        <div class="project-content-inner">
+          <div>
+            <p class="project-label">Objectif du projet</p>
+            <p>Concevoir une application web dynamique pour centraliser le suivi, l'évaluation et la validation des compétences en cybersécurité des apprenants.</p>
+          </div>
+          <div>
+            <p class="project-label">Réalisations Techniques</p>
+            <ul>
+              <li>Développement d'un backend solide en <strong>PHP</strong>.</li>
+              <li>Modélisation stricte et création d'une base de données relationnelle <strong>MySQL</strong>.</li>
+              <li>Implémentation d'un système de droits d'accès sécurisé basé sur trois rôles (Administrateur, Formateur, Étudiant).</li>
+              <li>Gestion des sessions chiffrées pour prévenir les vulnérabilités de base.</li>
+            </ul>
+            <br>
+            <p class="project-label">Résultats Obtenus</p>
+            <ul>
+              <li>Interface intuitive permettant la validation des compétences par les formateurs et la consultation des progrès par les étudiants.</li>
+              <li>Vous pouvez accéder a ce projet via le lien suivant : <a href="https://php.louniscartron.fr" target="_blank"><strong>Plateforme Cyberskills</strong></a></li>
+              <br>
+              <p>Espace Administrateur :</p>
+              <li>Nom d'utilisateur : <strong>rt@rt.com</strong></li>
+              <li>Mot de passe : <strong>rt</strong></li>
+              <p>Espace Formateur :</p>
+              <li>Nom d'utilisateur : <strong>form@form.com</strong></li>
+              <li>Mot de passe : <strong>form</strong></li>
+              <p>Espace Étudiant :</p>
+              <li>Nom d'utilisateur : <strong>etu@etu.com</strong></li>
+              <li>Mot de passe : <strong>etu</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="toggleAccordion(this)">
+      <div class="project-trigger">
+        <img src="img/xivo_img.png" alt="Téléphonie VoIP XiVO">
+        <div class="project-overlay">
+          <div>
+            <span class="project-badge">Télécoms & VoIP</span>
+            <div class="project-title"><h3>Standard Téléphonique IP</h3></div>
+          </div>
+          <div class="icon-cross"></div>
+        </div>
+      </div>
+      <div class="accordion-body">
+        <div class="project-content-inner">
+          <div>
+            <p class="project-label">Objectif du projet</p>
+            <p>Mettre en place un IPBX (autocommutateur téléphonique IP) complet permettant de gérer les communications internes d'une entreprise virtuelle.</p>
+          </div>
+          <div>
+            <p class="project-label">Réalisations Techniques</p>
+            <ul>
+              <li>Déploiement de la solution open-source <strong>XiVO</strong> au sein d'une machine virtuelle.</li>
+              <li>Ouverture et sécurisation des trunks via le protocole universel <strong>SIP</strong>.</li>
+              <li>Élaboration d'un plan de numérotation interne pour router efficacement les appels.</li>
+              <li>Établissement de communications voix entre terminaux physiques et softphones.</li>
+            </ul>
+            <br>
+            <p class="project-label">Résultats Obtenus</p>
+            <ul>
+              <li>Communications voix établies avec succès entre deux appareils (PC et Smartphone) en utilisant des softphones connectés au Wi-Fi local.</li>
+              <li>Maîtrise du déploiement d'une solution de téléphonie IP professionnelle, incluant la configuration d'un IPBX, la sécurisation des trunks SIP et la gestion d'un plan de numérotation interne.</li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="passions" class="container reveal">
+    <br><br><br>
+    <div class="passion-block">
+      <div>
+        <h2 class="section-title" style="text-align: left;">Divers</h2>
+        <p>Pratiquant intensif de musculation depuis plus de deux ans, je m'entraîne avec rigueur plusieurs fois par semaine.</p>
+        <p>Ce sport dépasse le simple cadre physique : il m'inculque une <strong>forte résilience mentale</strong>, une grande régularité et une méthodologie stricte pour atteindre des objectifs à long terme. Ces traits de caractère se reflètent directement dans ma manière d'aborder les défis techniques.</p>
+      </div>
+      <div>
+        <img src="img/salle muscu.webp" alt="Salle de musculation" class="passion-img">
+      </div>
+    </div>
+<br>
+<br>
+    <h2 id="cv" class="section-title" style="margin-top: 3rem;">Mon CV</h2>
+    <br><br>
+    <div class="cv-container">
+      <img src="img/cv.png" alt="Aperçu du CV" class="cv-img">
+      <br>
+      <a href="cv.pdf" download="CV_Lounis_Cartron.pdf" class="btn-primary" style="margin-top: 1rem;">Télécharger au format PDF</a>
+      <br><br>
+      <br>
+      <br>
+    </div>
+  </section>
+
+  <section id="contact" class="container reveal">
+    <div class="contact-section">
+      <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Restons en contact</h2>
+      <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: var(--muted-on-dark);">Ayant trouvé mon alternance chez <strong>Eiffage (Résintel)</strong> pour septembre 2026, je reste ouvert à tout échange concernant mon parcours ou l'ingénierie réseau.</p>
+      
+      <a href="mailto:lounis.cartron@etu.uca.fr" class="contact-email">lounis.cartron@etu.uca.fr</a>
+      
+      <p style="margin-top: 2rem; font-weight: 600; color: var(--muted-on-dark);">Téléphone : 06 52 30 59 79</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Lounis Cartron</p>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Logique d'ouverture fluide et robuste avec scrollHeight (sans bug CSS Grid)
+    function toggleAccordion(element) {
+      const body = element.querySelector('.accordion-body');
+      const isOpen = element.classList.contains('is-open');
+
+      // Fermer les autres cartes du même groupe
+      const siblings = element.parentElement.querySelectorAll('.skill-card.is-open, .project-card.is-open');
+      siblings.forEach(sibling => {
+        if (sibling !== element) {
+          sibling.classList.remove('is-open');
+          const siblingBody = sibling.querySelector('.accordion-body');
+          if(siblingBody) siblingBody.style.maxHeight = null;
+        }
+      });
+
+      // Basculer l'état de la carte cliquée
+      if (isOpen) {
+        element.classList.remove('is-open');
+        body.style.maxHeight = null;
+      } else {
+        element.classList.add('is-open');
+        body.style.maxHeight = body.scrollHeight + "px";
+      }
+    }
+
+    // 2. Bascule entre les compétences Humaines / Techniques
+    function switchSkills(type) {
+      const btnHumaines = document.getElementById('btn-humaines');
+      const btnTechniques = document.getElementById('btn-techniques');
+      const gridHumaines = document.getElementById('grid-humaines');
+      const gridTechniques = document.getElementById('grid-techniques');
+
+      // Réinitialiser (fermer) toutes les cartes ouvertes avant de changer d'onglet
+      document.querySelectorAll('.skill-card.is-open').forEach(card => {
+        card.classList.remove('is-open');
+        card.querySelector('.accordion-body').style.maxHeight = null;
+      });
+
+      if(type === 'humaines') {
+        btnHumaines.classList.add('active');
+        btnTechniques.classList.remove('active');
+        gridHumaines.classList.remove('hidden');
+        gridTechniques.classList.add('hidden');
+      } else {
+        btnTechniques.classList.add('active');
+        btnHumaines.classList.remove('active');
+        gridTechniques.classList.remove('hidden');
+        gridHumaines.classList.add('hidden');
+      }
+    }
+
+    // 3. Animation d'apparition au scroll (Reveal)
+    document.addEventListener("DOMContentLoaded", () => {
+      const reveals = document.querySelectorAll(".reveal");
+      
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: "0px 0px -50px 0px", threshold: 0.1 });
+
+        reveals.forEach(el => observer.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add("is-visible"));
+      }
+    });
+  </script>
+</body>
+</html>
