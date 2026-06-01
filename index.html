@@ -15,18 +15,18 @@
        VARIABLES - THÈME MARRON ET BEIGE DOUX
        ========================================= */
     :root {
-      --bg-color:oklch(72.631% 0.0202 46.57);       /* Beige sable très doux (moins agressif) */
-      --text-dark: #4a3b32;      /* Marron moyen/foncé (plus doux que du noir) */
-      --text-light: #7b6356;     /* Marron grisé doux */
-      --accent: #b07d62;         /* Caramel doux */
+      --bg-color: oklch(72.631% 0.0202 46.57);
+      --text-dark: #4a3b32;
+      --text-light: #7b6356;
+      --accent: #b07d62;
       --accent-hover: #96664d;
       
-      --card-dark: #3e312a;      /* Marron profond adouci */
+      --card-dark: #3e312a;
       --card-dark-hover: #4a3b32;
       --text-on-dark: #fcfaf8;   
       --muted-on-dark: #c2b4ab;  
       
-      --border:  oklch(72.631% 0.0202 46.57);           /* Beige soutenu pour les bordures */
+      --border: oklch(72.631% 0.0202 46.57);
       --radius: 20px;
       --max-width: 1080px;
       --transition: 0.4s ease;
@@ -67,7 +67,7 @@
        ========================================= */
     header.navbar {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      background:  oklch(72.631% 0.0202 46.57);  
+      background: oklch(72.631% 0.0202 46.57);  
       backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -115,7 +115,7 @@
        ========================================= */
     .timeline { display: flex; flex-direction: column; gap: 2rem; max-width: 950px; margin: 0 auto; }
     .timeline-item {
-      background-color:  oklab(79.11200000000001% 0.01106 0.01065);   border: 1px solid var(--border);
+      background-color: oklab(79.11200000000001% 0.01106 0.01065); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 1.5rem;
       display: grid; grid-template-columns: 280px 1fr; gap: 2.5rem;
       box-shadow: 0 10px 30px rgba(62, 49, 42, 0.03);
@@ -141,7 +141,9 @@
     }
     .timeline-title { font-size: 1.5rem; color: var(--text-dark); margin-bottom: 0.25rem; }
     .timeline-school { font-weight: 600; color: var(--text-light); margin-bottom: 1rem; }
-    .timeline-desc { color: var(--text-light); font-size: 1.05rem; margin-bottom: 0;}
+    .timeline-desc { color: var(--text-light); font-size: 1.05rem; margin-bottom: 0.5rem;}
+    .timeline-details { list-style-position: inside; color: var(--text-light); font-size: 0.95rem; }
+    .timeline-details li { margin-bottom: 0.3rem; }
 
     /* =========================================
        COMPÉTENCES
@@ -184,24 +186,6 @@
     .skill-list { color: var(--muted-on-dark); font-size: 0.95rem; list-style-position: inside; }
     .skill-list li { margin-bottom: 0.6rem; }
     .skill-list li strong { color: var(--text-on-dark); }
-    
-    /* Nouveau design pour les Résultats */
-    .skill-result {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px dashed rgba(255, 255, 255, 0.15);
-      color: var(--muted-on-dark);
-      font-size: 0.95rem;
-      font-style: italic;
-    }
-    .skill-result strong {
-      color: var(--accent);
-      font-style: normal;
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-    }
 
     /* =========================================
        PROJETS
@@ -242,30 +226,72 @@
     .project-card.is-open .icon-cross { transform: rotate(45deg); background-color: var(--card-dark); }
 
     .project-content-inner { 
-  padding: 3rem; 
-  display: grid; 
-  grid-template-columns: 1fr 1fr; /* 2 colonnes parfaitement égales */
-  gap: 3rem 4rem; /* 3rem d'espace vertical, 4rem d'espace horizontal */
-  border-top: 1px solid var(--border); 
-  align-items: start; /* Aligne le texte de tous les blocs vers le haut */
-}
+      padding: 3rem; 
+      display: grid; 
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem 4rem; 
+      border-top: 1px solid var(--border); 
+      align-items: start; 
+    }
 
-.project-label { 
-  font-size: 1.2rem; 
-  font-weight: 700; 
-  color: var(--text-dark); 
-  margin-bottom: 1.5rem; /* Un peu plus d'espace sous le titre */
-}
+    .project-label { 
+      font-size: 1.2rem; 
+      font-weight: 700; 
+      color: var(--text-dark); 
+      margin-bottom: 1.5rem; 
+    }
     .project-content-inner p, .project-content-inner ul { color: var(--text-light); font-size: 1.05rem; }
     .project-content-inner ul { list-style-position: inside; }
     .project-content-inner li { margin-bottom: 0.5rem; }
     .project-content-inner strong { color: var(--text-dark); }
 
     /* =========================================
-       PASSIONS & CV
+       PASSIONS & DIVERS
        ========================================= */
-    .passion-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem; }
-    .passion-img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+    .passion-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      margin-bottom: 6rem;
+    }
+    .passion-block { 
+      display: grid; 
+      grid-template-columns: 1.2fr 0.8fr; 
+      gap: 3rem; 
+      align-items: center; 
+      background-color: var(--card-dark);
+      border-radius: var(--radius);
+      padding: 3rem;
+      color: var(--text-on-dark);
+    }
+    .passion-block.reverse {
+      grid-template-columns: 0.8fr 1.2fr;
+    }
+    .passion-block.reverse .passion-text {
+      order: 2;
+    }
+    .passion-block.reverse .passion-img-container {
+      order: 1;
+    }
+    .passion-text h3 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .passion-text p {
+      color: var(--muted-on-dark);
+      font-size: 1.05rem;
+    }
+    .passion-text strong {
+      color: var(--text-on-dark);
+    }
+    .passion-img { 
+      width: 100%; 
+      height: 300px;
+      object-fit: cover;
+      border-radius: calc(var(--radius) - 5px); 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
     
     .cv-container { text-align: center; max-width: 700px; margin: 0 auto; }
     .cv-img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 2rem; }
@@ -280,7 +306,7 @@
     }
     .contact-section h2 { color: var(--text-on-dark); }
     .contact-email { 
-      font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; color: var(--text-on-dark); 
+      font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 800; color: var(--text-on-dark); 
       display: inline-block; margin-top: 2rem; border-bottom: 2px solid var(--accent); padding-bottom: 5px; 
     }
     .contact-email:hover { color: var(--accent); }
@@ -303,13 +329,17 @@
       
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
       .project-content-inner { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
-      .passion-block { grid-template-columns: 1fr; }
+      
+      .passion-block, .passion-block.reverse { grid-template-columns: 1fr; padding: 2rem; }
+      .passion-block.reverse .passion-text { order: 1; }
+      .passion-block.reverse .passion-img-container { order: 2; }
     }
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .skills-grid { grid-template-columns: 1fr; }
       .project-trigger { height: 35vh; min-height: 250px; }
       .project-overlay { padding: 1.5rem; }
+      .contact-email { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -330,21 +360,24 @@
   </header>
 
   <div class="top-spacer"></div>
-<br><br>
+  <br><br>
   <section id="about" class="container reveal">
     <h2 class="section-title">À Propos de moi</h2>
     
     <div class="about-card">
       <div class="about-content">
         <h1 class="about-title">Je suis Lounis CARTRON</h1>
-        <p class="about-subtitle">Étudiant en BUT Réseaux et Télécommunications</p>
+        <p class="about-subtitle">Étudiant en BUT Réseaux et Télécommunications
+        <br>(Alternant chez Eiffage/Résintel pour septembre 2026)
+        </p>
+        
         
         <p class="about-text">
           Actuellement en formation à l'IUT d'Aubière, j'acquiers les concepts fondamentaux des réseaux, de l'administration système et des télécommunications. Bien que j'aie une <strong>affinité particulière pour les infrastructures</strong>, j'ai choisi ce cursus pour élargir ma vision technique avec pour ambition de me spécialiser en <strong>cybersécurité</strong>.
         </p>
         
         <p class="about-text">
-          Je suis quelqu'un de naturellement <strong>curieux</strong> et <strong>rigoureux</strong>, accordant une grande importance à l'<strong>esprit d'équipe</strong>.
+          Je suis quelqu'un de naturellement <strong>curieux</strong> et <strong>rigoureux</strong>, accordant une grande importance à l'<strong>esprit d'équipe</strong> et aux processus méthodologiques de résolution de problèmes.
         </p>
         
         <p class="about-text">
@@ -362,7 +395,8 @@
       </div>
     </div>
   </section>
-<br><br><br><br>
+
+  <br><br><br><br>
   <section id="formations" class="container reveal">
     <h2 class="section-title">Mon Parcours</h2>
     <br>
@@ -376,7 +410,13 @@
           <div class="timeline-date">Sept 2025 - Présent</div>
           <h3 class="timeline-title">BUT Réseaux et Télécommunications</h3>
           <p class="timeline-school">IUT Clermont Auvergne - Site d'Aubière</p>
-          <p class="timeline-desc">Apprentissage approfondi des protocoles réseaux, de l'administration système, des services télécoms et de la sécurité informatique au sein d'environnements virtualisés ou physiques.</p>
+          <p class="timeline-desc">J'y apprends à concevoir, configurer et maintenir des réseaux informatiques et téléphoniques de bout en bout. Cette formation se distingue par son approche très concrète et détaillée :</p>
+          <ul class="timeline-details">
+            <li><strong>Travaux Pratiques intensifs :</strong> Manipulation directe et quotidienne d'équipements matériels (routeurs, commutateurs, câblage) pour comprendre très concrètement le trajet des données.</li>
+            <li><strong>Méthodologie de dépannage :</strong> Développement d'une forte capacité d'analyse et de diagnostic (troubleshooting) pour identifier et isoler rapidement l'origine d'une panne complexe.</li>
+            <li><strong>Culture de la sécurité :</strong> Sensibilisation constante aux bonnes pratiques pour protéger les infrastructures d'entreprise contre les vulnérabilités et les intrusions.</li>
+            <li><strong>Gestion de projets (SAE) :</strong> Réalisation de projets en groupe exigeants qui m'apprennent à m'organiser, à documenter mon travail et à collaborer efficacement.</li>
+          </ul>
         </div>
       </div>
       
@@ -388,13 +428,18 @@
           <div class="timeline-date">2022 - 2025</div>
           <h3 class="timeline-title">Baccalauréat Général</h3>
           <p class="timeline-school">Lycée Godefroy de Bouillon - Clermont-Ferrand</p>
-          <p class="timeline-desc">Spécialités : Mathématiques et Physique-Chimie. Une formation scientifique rigoureuse axée sur la logique et la résolution méthodique de problèmes complexes.</p>
+          <p class="timeline-desc">Spécialités : Mathématiques et Physique-Chimie. Cette filière scientifique m'a apporté des bases essentielles pour mon parcours technologique actuel :</p>
+          <ul class="timeline-details">
+            <li><strong>Esprit d'analyse :</strong> Capacité à décortiquer un problème complexe en plusieurs sous-étapes simples et compréhensibles.</li>
+            <li><strong>Rigueur et logique :</strong> Une méthode de travail structurée et mathématique qui me sert aujourd'hui au quotidien pour comprendre les algorithmes, le calcul d'adressage IP et l'architecture des réseaux.</li>
+          </ul>
         </div>
       </div>
 
     </div>
   </section>
-<br><br><br><br>
+
+  <br><br><br><br>
   <section id="skills" class="container reveal">
     <h2 class="section-title">Mes Compétences</h2>
     
@@ -414,74 +459,72 @@
         </div>
         <div class="accordion-body"><div class="accordion-inner">
           <ul class="skill-list">
-            <li>Configuration <strong>Cisco 1841</strong> (CLI IOS)</li>
-            <li>VLANs & Segmentation (Router-on-a-stick)</li>
-            <li>Routage, NAT/PAT, DHCP, DNS</li>
-            <li>Analyse de trames via <strong>Wireshark</strong></li>
+            <li>Configuration matérielle <strong>Cisco (1841, 2960)</strong> en ligne de commande.</li>
+            <li>Découpage des réseaux (VLANs, Router-on-a-stick).</li>
+            <li>Maîtrise du routage IP (définition de la route et de la passerelle en 172.25.0.1).</li>
+            <li>Protocoles essentiels : NAT/PAT, DHCP, DNS, Spanning Tree (STP).</li>
+            <li>Analyse de trafic et de trames via <strong>Wireshark</strong>.</li>
           </ul>
-         
-        </div></div>
-      </div>
-
-      <div class="skill-card" onclick="toggleAccordion(this)">
-        <div class="skill-header">
-          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          <span class="skill-title">Programmation</span>
-        </div>
-        <div class="accordion-body"><div class="accordion-inner">
-          <ul class="skill-list">
-            <li>Automatisation & Scripts <strong>Python</strong> / Bash</li>
-            <li>Développement Backend <strong>PHP</strong></li>
-            <li>Modélisation et requêtes <strong>MySQL</strong></li>
-            <li>Bases d'intégration HTML / CSS</li>
-          </ul>
-          
-        </div></div>
-      </div>
-
-      <div class="skill-card" onclick="toggleAccordion(this)">
-        <div class="skill-header">
-          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-          <span class="skill-title">Télécommunications</span>
-        </div>
-        <div class="accordion-body"><div class="accordion-inner">
-          <ul class="skill-list">
-            <li>Câblage structuré (RJ45, fibre optique)</li>
-           
-            <li>Notions de traitement du signal et fréquences</li>
-          </ul>
-          
-        </div></div>
-      </div>
-
-      <div class="skill-card" onclick="toggleAccordion(this)">
-        <div class="skill-header">
-          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span class="skill-title">Téléphonie</span>
-        </div>
-        <div class="accordion-body"><div class="accordion-inner">
-          <ul class="skill-list">
-            <li>Déploiement téléphonie IP (VoIP)</li>
-            <li>Administration de l'IPBX <strong>XiVO</strong></li>
-            <li>Configuration des trunks et protocole <strong>SIP</strong></li>
-          </ul>
-          
         </div></div>
       </div>
 
       <div class="skill-card" onclick="toggleAccordion(this)">
         <div class="skill-header">
           <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8 11h8"/><path d="M12 15V7"/></svg>
-          <span class="skill-title">Sécurité & Système</span>
+          <span class="skill-title">Sécurité</span>
         </div>
         <div class="accordion-body"><div class="accordion-inner">
           <ul class="skill-list">
-            <li>Serveurs <strong>Linux</strong> (Debian) & Conteneurs Docker</li>
-            <li><strong>Active Directory</strong> (Utilisateurs & GPO)</li>
-            <li>Sécurisation des accès et gestion des droits</li>
-            <li>Sensibilisation aux vulnérabilités</li>
+            <li>Gestion de pare-feu avec <strong>pfSense</strong> et création de zones isolées (DMZ).</li>
+            <li>Protection contre les attaques par force brute (Fail2ban).</li>
+            <li>Sécurisation des accès locaux (DHCP Snooping, Port Security).</li>
+            <li>Détection des menaces et analyse des logs système avec <strong>Wazuh</strong>.</li>
           </ul>
-         
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span class="skill-title">Systèmes & Virtu</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Administration de serveurs <strong>Linux (Debian)</strong> et Windows Server.</li>
+            <li>Création de machines virtuelles sur l'hyperviseur <strong>Proxmox VE</strong>.</li>
+            <li>Déploiement de conteneurs avec <strong>Docker</strong> et gestion via Portainer.</li>
+            <li>Mise en place et gestion de serveurs médias et de stockage cloud privé.</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="skill-title">Télécoms & VoIP</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Déploiement de solutions de téléphonie sur IP.</li>
+            <li>Installation et administration de l'IPBX <strong>XiVO</strong>.</li>
+            <li>Configuration de lignes réseaux (Trunks) avec le protocole <strong>SIP</strong>.</li>
+            <li>Notions de câblage structuré (cuivre et fibre optique) et traitement du signal.</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span class="skill-title">Développement</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>Création d'applications Backend en <strong>PHP</strong>.</li>
+            <li>Conception et requêtes de bases de données relationnelles <strong>MySQL</strong>.</li>
+            <li>Intégration d'interfaces utilisateur avec HTML et CSS.</li>
+            <li>Écriture de petits scripts d'automatisation en <strong>Python</strong> et Bash.</li>
+          </ul>
         </div></div>
       </div>
 
@@ -492,10 +535,9 @@
         </div>
         <div class="accordion-body"><div class="accordion-inner">
           <ul class="skill-list">
-            <li><strong>Anglais :</strong> Niveau B1+ (Compréhension technique)</li>
-            <li><strong>Espagnol :</strong> Niveau C1 (Courant)</li>
+            <li><strong>Anglais :</strong> Niveau B1+ (Lecture fluide de documentations techniques, compréhension de tutoriels spécialisés).</li>
+            <li><strong>Espagnol :</strong> Niveau C1 (Pratique courante).</li>
           </ul>
-          
         </div></div>
       </div>
 
@@ -506,28 +548,26 @@
       <div class="skill-card" onclick="toggleAccordion(this)">
         <div class="skill-header">
           <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-          <span class="skill-title">Autonomie</span>
+          <span class="skill-title">Autonomie & Initiative</span>
         </div>
         <div class="accordion-body"><div class="accordion-inner">
           <ul class="skill-list">
-            <li>Apprentissage en autodidacte permanent.</li>
-            <li>Création et gestion d'une infrastructure Home Lab complète.</li>
+            <li>Je suis capable de me former seul en autodidacte pour surmonter des blocages techniques complexes sur mes projets personnels.</li>
+            <li>J'ai pris l'initiative de créer et de gérer intégralement ma propre infrastructure de laboratoire informatique à la maison pour m'exercer.</li>
           </ul>
-          
         </div></div>
       </div>
 
       <div class="skill-card" onclick="toggleAccordion(this)">
         <div class="skill-header">
           <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          <span class="skill-title">Rigueur</span>
+          <span class="skill-title">Rigueur & Méthode</span>
         </div>
         <div class="accordion-body"><div class="accordion-inner">
           <ul class="skill-list">
-            <li>Processus de diagnostics méthodique face aux pannes.</li>
-            <li>Documentation systématique des interventions.</li>
+            <li>J'applique une approche stricte et étape par étape lors de la recherche de pannes (troubleshooting) pour isoler rapidement la source d'un problème.</li>
+            <li>J'apporte un grand soin à la documentation de mon travail, à la propreté de mon code et à l'organisation de mes plans d'adressage IP.</li>
           </ul>
-          
         </div></div>
       </div>
 
@@ -538,34 +578,90 @@
         </div>
         <div class="accordion-body"><div class="accordion-inner">
           <ul class="skill-list">
-            <li>Communication transparente pour les projets communs.</li>
-            <li>Entraide lors de résolutions d'incidents complexes.</li>
+            <li>J'ai une forte volonté de partager mes connaissances et d'aider mes camarades lors des projets de groupe (SAE) à l'IUT.</li>
+            <li>Je privilégie une communication transparente pour m'assurer que toute l'équipe avance sereinement dans la même direction.</li>
           </ul>
-          
         </div></div>
       </div>
 
       <div class="skill-card" onclick="toggleAccordion(this)">
         <div class="skill-header">
           <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <span class="skill-title">Curiosité</span>
+          <span class="skill-title">Curiosité Technique</span>
         </div>
         <div class="accordion-body"><div class="accordion-inner">
           <ul class="skill-list">
-            <li>Veille technologique active et quotidienne.</li>
-            <li>Volonté constante de comprendre le fonctionnement profond des systèmes.</li>
+            <li>J'effectue une veille technologique active pour rester à jour sur les dernières vulnérabilités de sécurité et les évolutions matérielles.</li>
+            <li>Je cherche toujours à comprendre le fonctionnement interne profond des protocoles réseau, au-delà de leur simple utilisation.</li>
           </ul>
-          
+        </div></div>
+      </div>
+
+      <div class="skill-card" onclick="toggleAccordion(this)">
+        <div class="skill-header">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span class="skill-title">Pédagogie & Clarté</span>
+        </div>
+        <div class="accordion-body"><div class="accordion-inner">
+          <ul class="skill-list">
+            <li>J'attache une grande importance à la vulgarisation : je m'efforce de retirer les termes techniques inutilement compliqués pour rendre les concepts accessibles à tous.</li>
+            <li>J'aime simplifier mes explications lors de mes présentations orales pour m'assurer d'être compris par n'importe quel interlocuteur.</li>
+          </ul>
         </div></div>
       </div>
 
     </div>
   </section>
-<br><br><br><br>
+
+  <br><br><br><br>
   <section id="projects" class="container reveal">
     <h2 class="section-title">Mes Projets</h2>
     <br>
+
+    <!-- PROJET 1 -->
     
+
+    <!-- PROJET 2 -->
+    <div class="project-card" onclick="toggleAccordion(this)">
+      <div class="project-trigger">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop" alt="Architecture Réseau Sécurisée" onerror="this.src='https://via.placeholder.com/800x400?text=Architecture+Reseau'">
+        <div class="project-overlay">
+          <div>
+            <span class="project-badge">Infrastructure & Sécurité</span>
+            <div class="project-title"><h3>Architecture Réseau Sécurisée (SAE 2.04)</h3></div>
+            </div>
+            <div class="icon-cross"></div>
+        </div>
+        </div>
+        <div class="accordion-body">
+            <div class="project-content-inner">
+                <div>
+                <p class="project-label">Contexte du projet</p>
+                <p>Dans le cadre d'un projet de formation (SAE 2.04), j'ai été chargé de concevoir une architecture réseau sécurisée pour une entreprise fictive. Ce projet (en cours) s'effectue en équipe</p>
+                </div>
+                <div>
+                <p class="project-label">Objectif du projet</p>
+                <p>Créer une infrastructure réseau robuste et sécurisée en intégrant des pare-feu, des VLANs et des zones DMZ pour protéger les données sensibles de l'entreprise. Egalement, mettre en place des services utilisateurs et administrateurs (outils de gestion et de surveillance, outils de détection, etc...).</p>
+                </div>
+                <div>
+                <p class="project-label">Travail réalisé</p>
+                <ul>
+                    <li>J'ai conçu un plan d'adressage IP détaillé pour segmenter le réseau en différentes zones de sécurité.</li>
+                    <li>J'ai configuré un pare-feu pfSense pour contrôler le trafic entre les zones et protéger les ressources critiques.</li>
+                    <li>J'ai mis en place des VLANs pour isoler les différents départements de l'entreprise et limiter les risques de propagation d'attaques.</li>
+                </div>
+                <div>
+                <p class="project-label">Résultat</p>
+                <ul>
+                    <li>Une architecture réseau sécurisée et fonctionnelle qui répond aux exigences de l'entreprise fictive.</li>
+                    <li>Un rapport détaillé documentant la conception, la configuration et les mesures de sécurité mises en place.</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="project-card" onclick="toggleAccordion(this)">
       <div class="project-trigger">
         <img src="img/homelab_img.png" alt="Home Lab Infra">
@@ -607,7 +703,7 @@
         </div>
       </div>
     </div>
-
+    <!-- PROJET 4 -->
     <div class="project-card" onclick="toggleAccordion(this)">
       <div class="project-trigger">
         <img src="img/cyberskills_img.jpg" alt="Plateforme Cyberskills">
@@ -659,7 +755,7 @@
         </div>
       </div>
     </div>
-
+    <!-- PROJET 5 -->
     <div class="project-card" onclick="toggleAccordion(this)">
       <div class="project-trigger">
         <img src="img/xivo_img.png" alt="Téléphonie VoIP XiVO">
@@ -706,18 +802,47 @@
 
   <section id="passions" class="container reveal">
     <br><br><br>
-    <div class="passion-block">
-      <div>
-        <h2 class="section-title" style="text-align: left;">Divers</h2>
-        <p>Pratiquant intensif de musculation depuis plus de deux ans, je m'entraîne avec rigueur plusieurs fois par semaine.</p>
-        <p>Ce sport dépasse le simple cadre physique : il m'inculque une <strong>forte résilience mentale</strong>, une grande régularité et une méthodologie stricte pour atteindre des objectifs à long terme. Ces traits de caractère se reflètent directement dans ma manière d'aborder les défis techniques.</p>
+    <h2 class="section-title">Mes centres d'intérêt</h2>
+    
+    <div class="passion-grid">
+      <!-- Bloc Musculation -->
+      <div class="passion-block">
+        <div class="passion-text">
+          <h3>Musculation & Dépassement de soi</h3>
+          <p>Je suis un pratiquant très intensif de musculation. Je m'entraîne avec une grande rigueur plusieurs fois par semaine depuis plus de deux ans. Cette implication m'a permis de transformer mon physique en <strong>gagnant 20 kg de masse musculaire</strong> (passant de 60 kg à 80 kg). Ce résultat impressionnant a nécessité une discipline de fer, tant sur la qualité de l'entraînement régulier que sur la précision de mon alimentation quotidienne.</p>
+          <p style="margin-top: 1rem;">J'ai également eu la chance de transmettre mon expérience en <strong>coachant un ami</strong> pour l'aider dans sa propre progression. Ce sport m'a inculqué une forte résilience mentale, le goût de l'effort et la patience pour atteindre des objectifs ambitieux à long terme. Ces traits de caractère se reflètent directement dans ma manière de ne jamais abandonner face aux défis techniques de l'informatique.</p>
+        </div>
+        <div class="passion-img-container">
+          <img src="img/salle muscu.webp" alt="Salle de musculation" class="passion-img" onerror="this.src='https://via.placeholder.com/600x400?text=Musculation'">
+        </div>
       </div>
-      <div>
-        <img src="img/salle muscu.webp" alt="Salle de musculation" class="passion-img">
+
+      <!-- Bloc Automobile (Inversé) -->
+      <div class="passion-block reverse">
+        <div class="passion-text">
+          <h3>Culture & Univers de l'Automobile</h3>
+          <p>Je suis un grand passionné d'automobile, et je m'intéresse énormément à toute la culture qui entoure ce milieu. J'aime suivre l'actualité des différents constructeurs, observer l'évolution minutieuse du design des véhicules au fil des années, et me plonger dans l'histoire des modèles emblématiques qui ont marqué des générations.</p>
+          <p style="margin-top: 1rem;">C'est un univers extrêmement riche et captivant, qui allie la recherche constante d'une esthétique parfaite à des innovations technologiques de pointe. Cela nourrit ma curiosité naturelle pour les systèmes complexes et l'ingénierie.</p>
+        </div>
+        <div class="passion-img-container">
+          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop" alt="Culture automobile" class="passion-img">
+        </div>
+      </div>
+
+      <!-- Bloc Jeux vidéo -->
+      <div class="passion-block">
+        <div class="passion-text">
+          <h3>Jeux vidéo : Stratégie & Hacking</h3>
+          <p>Sur mon temps libre, je suis un grand amateur de jeux vidéo. J'apprécie tout particulièrement les approches tactiques, la discrétion et la planification nécessaires dans des séries comme <strong>Hitman</strong>. Il faut observer son environnement, être patient et élaborer des stratégies pour contourner les obstacles.</p>
+          <p style="margin-top: 1rem;">Mais c'est véritablement l'univers du jeu <strong>Watch Dogs</strong> qui a été un énorme déclic pour moi. Le jeu est centré sur le hacking, l'infiltration informatique et l'exploitation des infrastructures de toute une ville connectée. <strong>C'est ce côté "piratage" fascinant qui m'a donné l'envie initiale de rejoindre la formation BUT R&T</strong>. Je voulais comprendre concrètement comment les réseaux et l'informatique fonctionnent réellement en coulisses, et surtout, apprendre à les sécuriser de manière professionnelle.</p>
+        </div>
+        <div class="passion-img-container">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop" alt="Gaming Setup" class="passion-img">
+        </div>
       </div>
     </div>
-<br>
-<br>
+    
+    <br><br>
     <h2 id="cv" class="section-title" style="margin-top: 3rem;">Mon CV</h2>
     <br><br>
     <div class="cv-container">
@@ -725,15 +850,15 @@
       <br>
       <a href="cv.pdf" download="CV_Lounis_Cartron.pdf" class="btn-primary" style="margin-top: 1rem;">Télécharger au format PDF</a>
       <br><br>
-      <br>
-      <br>
     </div>
   </section>
 
   <section id="contact" class="container reveal">
     <div class="contact-section">
       <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Restons en contact</h2>
-      <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: var(--muted-on-dark);">Ayant trouvé mon alternance chez <strong>Eiffage (Résintel)</strong> pour septembre 2026, je reste ouvert à tout échange concernant mon parcours ou l'ingénierie réseau.</p>
+      <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: var(--muted-on-dark);">
+        Je suis ravi d'annoncer que je rejoindrai les équipes d'<strong>Eiffage (Résintel)</strong> en alternance pour la rentrée de septembre 2026. <br><br>Je reste néanmoins ouvert à tout échange concernant mon parcours ou des projets d'ingénierie réseau.
+      </p>
       
       <a href="mailto:lounis.cartron@etu.uca.fr" class="contact-email">lounis.cartron@etu.uca.fr</a>
       
@@ -748,7 +873,7 @@
   </footer>
 
   <script>
-    // 1. Logique d'ouverture fluide et robuste avec scrollHeight (sans bug CSS Grid)
+    // 1. Logique d'ouverture fluide et robuste avec scrollHeight
     function toggleAccordion(element) {
       const body = element.querySelector('.accordion-body');
       const isOpen = element.classList.contains('is-open');
@@ -820,3 +945,4 @@
     });
   </script>
 </body>
+</html>
